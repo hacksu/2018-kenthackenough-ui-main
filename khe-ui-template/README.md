@@ -1,6 +1,6 @@
 # khe-ui-template
 
-> Basic skeleton for khe.io
+> A basic skeleton for khe.io
 
 ## Build Setup
 

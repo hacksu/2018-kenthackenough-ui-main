@@ -1,7 +1,7 @@
 {
   "name": "khe-ui-template",
   "version": "1.0.0",
-  "description": "Basic skeleton for khe.io",
+  "description": "A basic skeleton for khe.io",
   "author": "Ben Holland <bhollan5@kent.edu>",
   "private": true,
   "scripts": {
@@ -34,6 +34,9 @@
     "eslint-friendly-formatter": "^3.0.0",
     "eslint-loader": "^1.7.1",
     "eslint-plugin-html": "^3.0.0",
+    "eslint-config-airbnb-base": "^11.3.0",
+    "eslint-import-resolver-webpack": "^0.8.3",
+    "eslint-plugin-import": "^2.7.0",
     "eventsource-polyfill": "^0.9.6",
     "express": "^4.14.1",
     "extract-text-webpack-plugin": "^3.0.0",
