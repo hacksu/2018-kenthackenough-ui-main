@@ -3,8 +3,8 @@
     <div id="banner">
       <div id="bannerR" class="bannerContainer">
         <img id="bannerLogo" 
-             src="./assets/blackLogo.png">
-        <p class="bannerText" id="kheTitle">KENT HACK ENOUGH</p>
+             src="./assets/blackLogo.png"><router-link to="/">
+        <p class="bannerText" id="kheTitle">KENT HACK ENOUGH</p></router-link>
       </div>
       <div id="bannerL" class="bannerContainer">
         

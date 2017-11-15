@@ -44,6 +44,21 @@ export default {
           question: 'Sounds cool, but how much does it cost?',
           answer: '$0.00!!<br><br>Thanks to the generosity of our sponsors, we\'re able to put on events like this for <i>free</i>.  We even pay for your meals for the weekend, and can reimburse you for travel costs.  Make sure to thank our sponsors - we couldn\'t do it without them!',
         },
+        {
+          id: 3,
+          question: 'What should I bring?',
+          answer: 'Bring a laptop/something to hack on, a change of clothes, deoderant, a blanket/pillow, toiletries, deoderant, anything else you think you might use to complete your project, and deoderant.<br><br>We\'ll have an MLH hardware lab, which means we\'ll also have some cool hardware you can rent if you want!',
+        },
+        {
+          id: 4,
+          question: 'Do I need to come with a team?',
+          answer: 'You can, but you don\'t have to! We\'ll have team building at the event.',
+        },
+        {
+          id: 5,
+          question: 'How many people per team?',
+          answer: 'There\'s no hard limit, but the prizes are meant for teams of 4, so that\'s what we recommend.',
+        },
       ]
     };
   },

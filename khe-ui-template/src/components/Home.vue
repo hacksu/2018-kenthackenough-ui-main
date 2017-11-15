@@ -3,6 +3,8 @@
     <main-landing></main-landing>
     <info></info>
     <faq></faq>
+    <kentmap></kentmap>
+    
   </div>
 </template>
 
@@ -11,6 +13,7 @@ import mainLanding from './Main';
 
 import info from './Info';
 import faq from './FAQ';
+import kentmap from './Map';
 
 export default {
   name: 'Home',
@@ -18,6 +21,7 @@ export default {
     mainLanding,
     info,
     faq,
+    kentmap
   },
   data() {
     return {
