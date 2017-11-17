@@ -1,5 +1,5 @@
 <template>
-  <div id="login">
+  <div id="login-dialog">
     <label for="login-username">Username</label>
     <input id="login-username" type="text" />
 
@@ -15,12 +15,20 @@
 </template>
 
 <style scoped>
- 
+  #login-dialog {
+    position: absolute;
+    background-color: #ffffff;
+    border: #cccccc 5px solid;
+    border-radius: 10px;
+    min-width: 200px;
+    padding: 10px;
+    width: 15%;
+    top: 115%;
+    right: 10px;
+  }
 </style>
 
 <script>
-
-
 export default {
   name: 'Login',
   data() {
