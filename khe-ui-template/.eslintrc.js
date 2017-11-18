@@ -35,6 +35,10 @@ module.exports = {
     }],
     
     'no-var': 0,
+    'comma-dangle': 0,
+    'no-plusplus': 0,
+    'object-shorthand': 0,
+    'func-names': 0,
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
   }

@@ -57,6 +57,7 @@ export default {
     background: black;
     padding: 0;
     overflow: hidden;
+    transform: translateZ(100px);
   }
   
   .bannerContainer {
