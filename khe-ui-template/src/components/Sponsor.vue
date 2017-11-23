@@ -2,37 +2,72 @@
 <div id="SponsorForm">
   <h1>Interested in Sponsoring KHE?</h1>
   <p>We want to make sure you feel like you're getting your money's worth when you sponsor our event. We have tons of options for letting you promote your brand, recruit smart, innovative people, and giving back to the tech community!</p>
-  <div id="form">
-    <span>
-      Company Name: 
-      <input type="text" placeholder="Company Name Here"
-             v-model="companyName">
-    </span>
-    <span>
-      Contact Email: 
-      <input type="text" placeholder="contact@company.com"
-             v-model="companyEmail">
-    </span>
+  <form action="http://10.14.213.11:3000/test/sponsors/cart" method="post">
+    <div id="form">
+      <span style="font-weight:bold;">
+        Company Name: 
+        <input type="text" placeholder="Company Name Here"
+             name="companyName"
+             v-model="companyName"
+             required>
+      </span>
+      <span style="font-weight:bold;">
+        Contact Email: 
+        <input type="email" placeholder="contact@company.com"
+             name="contactEmail"
+             v-model="companyEmail"
+             required>
+      </span>
   
-  </div>
-  <p>Select the benefits that you'd be interested in below, or click on the <b>?</b> to learn more about them.</p>
+    </div>
+    <p>Select the benefits that you'd be interested in below, or scroll over the <b>i</b> to learn more about them.</p>
+    
+    <br>
+    
+    <h3>Kent Hack Enough Sponsor Benefits</h3>
   
-  <div class="benefit" v-for="benefit in benefits">
-    <div class="name">
-      <div class="detailsBubble" v-if="benefit.details">
-        {{ benefit.description }}
-      </div>
-      <span class="details" 
+    <div class="benefit" v-for="benefit in benefits" v-if="benefit.tag == 'khe'">
+      <div class="name">
+        <div class="detailsBubble" v-if="benefit.details">
+          {{ benefit.description }}
+        </div>
+        <span class="details" 
             @mouseenter="benefit.details = true;"
             @mouseleave="benefit.details = false;">i</span>
-      {{ benefit.name}}
+        {{ benefit.name}}
       
+        </div>
+      <label class="container">${{ benefit.price }}
+        <input type="checkbox" v-model="benefit.checked"
+             v-bind:name="benefit.id">
+        <span class="checkmark"></span>
+      </label>
     </div>
-    <label class="container">${{ benefit.price }}
-      <input type="checkbox" v-model="benefit.checked">
-      <span class="checkmark"></span>
-    </label>
-  </div>
+    <br>
+    
+    <h3>Hacksu Sponsor Benefits</h3>
+    <p>Hacksu is Kent's CS organization.  We have weekly meetings with around 20-50 smart, committed, tech-oriented Kent students. We teach weekly lessons on various programming languages and libraries. </p>
+  
+    <div class="benefit" v-for="benefit in benefits" v-if="benefit.tag == 'hacksu'">
+      <div class="name">
+        <div class="detailsBubble" v-if="benefit.details">
+          {{ benefit.description }}
+        </div>
+        <span class="details" 
+            @mouseenter="benefit.details = true;"
+            @mouseleave="benefit.details = false;">i</span>
+        {{ benefit.name}}
+      
+        </div>
+      <label class="container">${{ benefit.price }}
+        <input type="checkbox" v-model="benefit.checked"
+             v-bind:name="benefit.id">
+        <span class="checkmark"></span>
+      </label>
+    </div>
+  
+    <input type="submit" id="submit" value="Submit!">
+  </form>
   
   <div id="total">Total: ${{ total }}</div>
   
@@ -185,6 +220,7 @@
     position: fixed;
     bottom: 0;
     right: 0;
+    background: lightgreen;
     padding: 20px;
     font-size: 18px;
     border-top: solid black 1px;
@@ -209,8 +245,15 @@
     outline: none;
   }
   #form input:focus {
-    
     border-bottom: lightGreen 1px solid;
+  }
+  
+  #submit {
+    font-size: 18px;
+    padding: 10px;
+    margin-top: 30px;
+    background: white;
+    border: solid black 1px;
   }
   
   
@@ -242,6 +285,7 @@ export default {
       benefits: [
         {
           name: 'Send Mentors',
+          id: 'send_mentors',
           description: 'Description here!',
           price: 100,
           details: false,
@@ -251,14 +295,16 @@ export default {
         },
         {
           name: 'Reserve Table',
+          id: 'reserve_table',
           description: 'Description here!',
           price: 100,
           details: false,
-          checked: true,
+          checked: false,
           tag: 'khe'
         },
         {
           name: 'Judge Final Hacks',
+          id: 'judge_final_hacks',
           description: 'Description here!',
           price: 50,
           details: false,
@@ -267,6 +313,7 @@ export default {
         },
         {
           name: 'Speak at Opening Ceremony (5 minutes)',
+          id: 'speak_at_opening_ceremony',
           description: 'Description here!',
           price: 100,
           details: false,
@@ -275,6 +322,7 @@ export default {
         },
         {
           name: 'Keynote Speaker at Opening Ceremony (up to 15 minutes)',
+          id: 'keynote_speaker',
           description: 'Description here!',
           price: 100,
           details: false,
@@ -283,6 +331,7 @@ export default {
         },
         {
           name: 'Reserved space in hacking area',
+          id: 'reserved_space',
           description: 'Description here!',
           price: 500,
           details: false,
@@ -291,6 +340,7 @@ export default {
         },
         {
           name: 'Logo on website',
+          id: 'logo_on_website',
           description: 'Description here!',
           price: 100,
           details: false,
@@ -300,6 +350,7 @@ export default {
         },
         {
           name: 'Logo on T-shirt',
+          id: 'logo_on_t',
           description: 'Description here!',
           price: 100,
           details: false,
@@ -309,6 +360,7 @@ export default {
         },
         {
           name: 'Distrubuted Swag in Swag Bags',
+          id: 'swag_in_swag_bags',
           description: 'Description here!',
           price: 50,
           details: false,
@@ -318,6 +370,7 @@ export default {
         },
         {
           name: 'Send Recruiters',
+          id: 'send_recruiters',
           description: 'Description here!',
           price: 350,
           details: false,
@@ -327,6 +380,7 @@ export default {
         },
         {
           name: 'Resume Book After Event',
+          id: 'resume_book_after',
           description: 'Description here!',
           price: 500,
           details: false,
@@ -336,6 +390,7 @@ export default {
         },
         {
           name: 'Resume Book Before Event',
+          id: 'resume_book_before',
           description: 'Description here!',
           price: 700,
           details: false,
@@ -346,6 +401,7 @@ export default {
 
         {
           name: 'Talk at the Beginning of a Hacksu Lesson',
+          id: 'resume_book_before',
           description: '10 minutes',
           price: 50,
           details: false,
@@ -355,6 +411,7 @@ export default {
         },
         {
           name: 'Give a Hacksu Lesson',
+          id: 'hacksu_lesson',
           description: 'Description Here!',
           price: 100,
           details: false,
@@ -364,6 +421,7 @@ export default {
         },
         {
           name: 'Logo on Website for 1 Year',
+          id: 'hacksu_logo_on_website',
           description: 'Description Here!',
           price: 100,
           details: false,
@@ -373,6 +431,7 @@ export default {
         },
         {
           name: 'Name on Website As Contributor',
+          id: 'hacksu_name_on_website',
           description: 'Description Here!',
           price: 50,
           details: false,
@@ -382,6 +441,7 @@ export default {
         },
         {
           name: 'Logo on Hacksu Shirts',
+          id: 'hacksu_logo_on_t',
           description: 'Description Here!',
           price: 50,
           details: false,
@@ -391,6 +451,7 @@ export default {
         },
         {
           name: 'Big Logo on Hacksu Shirts',
+          id: 'hacksu_big_logo_on_t',
           description: 'Description Here!',
           price: 100,
           details: false,

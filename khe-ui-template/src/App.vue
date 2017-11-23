@@ -3,14 +3,15 @@
     <div id="banner">
       <div id="bannerR" class="bannerContainer">
         <img id="bannerLogo" 
-             src="./assets/blackLogo.png"><router-link to="/">
+             src="./assets/blackLogo.png"><router-link to="/" class="routerLink">
         <p class="bannerText" id="kheTitle">KENT HACK ENOUGH</p></router-link>
       </div>
       <div id="bannerL" class="bannerContainer">
         
         <p class="bannerText bannerLink"
            v-scroll-to="'#info'">About</p>
-        <p class="bannerText bannerLink">FAQ</p>
+        <p class="bannerText bannerLink"
+           v-scroll-to="'#faq'">FAQ</p>
         <p class="bannerText bannerLink">Sponsors</p>
         <p class="bannerText bannerLink">Contact</p>
         <p class="bannerText bannerLink">Map</p>
@@ -53,9 +54,11 @@ export default {
     top: 0;
     left: 0;
     width: 100%;
-    height: 60px;
+    height: 10vh;
+    max-height: 60px;
     background: black;
     padding: 0;
+    z-index: 1000;
     overflow: hidden;
     transform: translateZ(100px);
   }
@@ -80,10 +83,23 @@ export default {
     color: black;
   }
   
+  .routerLink {
+    text-decoration: none;
+  }
+  @media only screen and (max-width: 830px) {
+    .routerLink {
+      display: none;
+    } 
+  }
+  
   #kheTitle {
     font-size: 20px;
     font-weight: bold;
     margin-top: 15px;
+    text-decoration: none;
+  }
+  #kheTitle:visited {
+    text-decoration: none;
   }
   
   #bannerLogo {
