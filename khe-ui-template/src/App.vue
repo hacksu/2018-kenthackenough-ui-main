@@ -15,8 +15,10 @@
         <p class="bannerText bannerLink">Sponsors</p>
         <p class="bannerText bannerLink">Contact</p>
         <p class="bannerText bannerLink">Map</p>
+        <p class="bannerText bannerLink" @click="showLogin = !showLogin;">Login</p>
         <div class="padding" style="width: 50px"></div>
       </div>
+      <login v-if="showLogin"></login>
     </div>
     
     <router-view/>
@@ -24,8 +26,18 @@
 </template>
 
 <script>
+import login from './components/Login';
+
 export default {
   name: 'app',
+  components: {
+    login,
+  },
+  data() {
+    return {
+      showLogin: false,
+    };
+  },
 };
 </script>
 
@@ -58,6 +70,7 @@ export default {
     max-height: 60px;
     background: black;
     padding: 0;
+
     z-index: 1000;
     overflow: hidden;
     transform: translateZ(100px);
