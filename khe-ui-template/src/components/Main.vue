@@ -53,7 +53,7 @@ h1, h2 {
   
   #logo {
     animation: fadein 1s linear;
-    margin-top: 40px;
+    margin-top: 100px;
     margin-bottom: -60px;
     /* This margin makes the logo look more centered */
     margin-right: 25px;
@@ -69,20 +69,24 @@ h1, h2 {
   
   .mainBtn {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    padding: 20px 40px 20px 40px;
+    min-width: 300px;
+    padding: 10px 40px 10px 40px;
     background: white;
     font-size: 20px;
-    border: solid black 2px;
-    border-top-left-radius: 10% 20%;
-    border-top-right-radius: 10% 20%;
-    border-bottom-left-radius: 10% 20%;
-    border-bottom-right-radius: 10% 20%;
+/*    border: solid black 2px;*/
+    border-top-left-radius: 10% 50%;
+    border-top-right-radius: 10% 50%;
+    border-bottom-left-radius: 10% 50%;
+    border-bottom-right-radius: 10% 50%;
     margin: 10px;
     transition-duration: .2s;
     cursor: pointer;
     outline: none;
+    
+    box-shadow: 3px 3px 10px rgba(0,0,0,.5);
   }
   .mainBtn:hover {
+    
     background: black;
     color: white;
     border: solid gray 2px;

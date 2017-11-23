@@ -2,6 +2,9 @@
   <div id="container">
     <main-landing></main-landing>
     <info></info>
+    <faq></faq>
+    <kentmap></kentmap>
+    
   </div>
 </template>
 
@@ -9,16 +12,20 @@
 import mainLanding from './Main';
 
 import info from './Info';
+import faq from './FAQ';
+import kentmap from './Map';
 
 export default {
   name: 'Home',
   components: {
     mainLanding,
     info,
+    faq,
+    kentmap
   },
   data() {
     return {
-      msg: 'Welcome to Your Vue.js App',
+
     };
   },
 };
