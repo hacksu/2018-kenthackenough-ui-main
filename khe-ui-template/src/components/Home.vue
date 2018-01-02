@@ -9,11 +9,10 @@
 </template>
 
 <script>
-import mainLanding from './Main';
-
-import info from './Info';
-import faq from './FAQ';
-import kentmap from './Map';
+import mainLanding from './homeComponents/Main';
+import info from './homeComponents/Info';
+import faq from './homeComponents/FAQ';
+import kentmap from './homeComponents/Map';
 
 export default {
   name: 'Home',
