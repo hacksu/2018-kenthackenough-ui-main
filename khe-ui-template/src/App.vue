@@ -1,14 +1,23 @@
 <template>
   <div id="app">
-    <div id="banner">
-      <div id="bannerR" class="bannerContainer">
+    <div id="banner"
+         v-bind:style="{ minHeight: mobileMenu + 'px' }">
+      <div id="bannerL" class="bannerContainer">
         <img id="bannerLogo" 
              src="./assets/blackLogo.png"><router-link to="/" class="routerLink">
         <p class="bannerText" id="kheTitle"
            v-scroll-to="'#mainContainer'">KENT HACK ENOUGH</p>
         </router-link>
+        
+        <div id="hamburgMenu">
+          <img id="hamburgIcon" src="../static/Hamburger_icon.svg.png"
+             @click="togMenu()">
+        </div>
       </div>
-      <div id="bannerL" class="bannerContainer">
+      
+      
+      
+      <div id="bannerR" class="bannerContainer">
         
         <router-link to="/" class="routerLink">
           <p class="bannerText bannerLink"
@@ -47,6 +56,7 @@ export default {
   data() {
     return {
       showLogin: false,
+      mobileMenu: 50,
       user: {
         _id: '',
         email: 'test@sample.com',
@@ -80,6 +90,14 @@ export default {
       // Normally we could do a one line function like this inside an @click attribute,
       // but this makes it easier to access from it's children
       this.showLogin = !this.showLogin;
+    },
+
+    togMenu: function() {
+      if (this.mobileMenu === 50) {
+        this.mobileMenu = 375;
+      } else {
+        this.mobileMenu = 50;
+      }
     }
   }
 };
@@ -115,12 +133,18 @@ export default {
     background: black;
     padding: 0;
 
+    /* Setting transition duration for mobile menu change*/
+    transition-duration: .5s;
+    
     z-index: 1000;
     overflow: hidden;
     transform: translateZ(100px);
   }
   
-  .bannerContainer {
+  #bannerR {
+    display:flex;
+  }
+  #bannerL {
     display: flex;
   }
   
@@ -143,11 +167,7 @@ export default {
   .routerLink {
     text-decoration: none;
   }
-  @media only screen and (max-width: 830px) {
-    .routerLink {
-      display: none;
-    } 
-  }
+  
   
   #kheTitle {
     font-size: 20px;
@@ -162,6 +182,7 @@ export default {
   #bannerLogo {
     filter: invert(100%);
     height: 40px;
+    width: 70px;
     margin-top: 15px;
     margin-left: 10px;
     margin-right: 30px;
@@ -185,4 +206,53 @@ export default {
     font-size: 20px;
     cursor: pointer;
   }
+  
+/*  RESPONSIVE CSS  */
+  
+  #hamburgMenu {
+    display: none; 
+  }
+  
+  @media only screen and (max-width: 950px) {
+    #kheTitle {
+      display: none;
+    }
+  }
+  
+  @media only screen and (max-width: 800px) {
+    #bannerL {
+      display: block;
+    }
+    
+    #bannerR {
+      flex-direction: column;
+    }
+    
+    #banner {
+      flex-direction: column;
+    }
+
+    #hamburgMenu {
+      display: block; 
+      cursor: pointer;
+      float: right;
+    }
+    #hamburgIcon {
+      filter: invert(100%);
+      width: 40px;
+      height: 40px;
+      padding: 10px;
+    }
+    #bannerLMobile {
+      display: block;
+    }
+    .bannerLink {
+      margin-bottom: 0px;
+      padding-bottom: 10px;
+      border: solid black 1px;
+    }
+  }
+  
+  
+  
 </style>
