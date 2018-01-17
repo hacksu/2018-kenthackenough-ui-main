@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import scrollto from 'vue-scrollto';
+  
 import mainLanding from './homeComponents/Main';
 import info from './homeComponents/Info';
 import faq from './homeComponents/FAQ';
@@ -27,6 +29,13 @@ export default {
 
     };
   },
+  
+  mounted: function() {
+    if (this.$parent.scrollToEl !== '') {
+      scrollto.scrollTo(this.$parent.scrollToEl, 300);
+      this.$parent.scrollToEl = '';
+    }
+  }
 };
 </script>
 

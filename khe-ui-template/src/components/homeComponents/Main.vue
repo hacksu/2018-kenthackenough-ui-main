@@ -14,12 +14,18 @@
       
     </div>
     
-    <!-- This div is for once the application is launched-->
+    <!-- This div is for once the application is launched, when the user is NOT logged in -->
     <div id="applicationSite">
-      <button class="mainBtn" id="apply">APPLY NOW!</button>
+      <button class="mainBtn" id="apply"
+              @click="$parent.$parent.dispRegister()">APPLY NOW!</button>
       <br>
       <button class="mainBtn" id="login"
               @click="$parent.$parent.dispLogin()">Login</button>
+    </div>
+    
+    <div id="applicationSiteLoggedIn">
+      <button class="mainBtn" id="apply"
+              @click="$parent.$parent.dispRegister()">Fill out your application!</button>
     </div>
   
   </div>
@@ -28,6 +34,7 @@
 <style scoped>
   #mainContainer {
     min-height: 100vh;
+    padding-bottom: 20px;
   }
 h1, h2 {
     font-weight: normal;

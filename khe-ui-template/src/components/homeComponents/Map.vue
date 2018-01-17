@@ -1,5 +1,5 @@
 <template>
-<div id="map">
+<div id="map" class="widget">
   <div id="directions">
     <h1>Where to Go:</h1>
     <p>Kent Hack Enough is graciously hosted in the Kent State Library, at: </p>
@@ -29,10 +29,10 @@
     background: black;
     color: white;
     display: flex;
+    flex-flow: row wrap;
     align-content: center;
 /*    align-items: center;*/
     justify-content: space-around;
-    padding: 100px;
   }
   
   #mapIframe {

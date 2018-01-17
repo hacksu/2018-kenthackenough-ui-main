@@ -1,20 +1,32 @@
 <template>
-  <div id="contact">
-    <h2 id="contactTitle">Contact us!!</h2>
-    <p>Want more information? Email lame? No worries! You can go to our
-      <a href="https://www.facebook.com/groups/hacksu/">facebook page</a>,
-      <a href="https://www.instagram.com/hacksu/?hl=en">instagram</a>
+  <div id="contact" class="widget">
+    <h2 id="contactTitle">Contact us</h2>
+    <p>
+      If you have any questions, concerns, or problems, please do not hesitate to contact us. One of our organizers will get back to you as soon as humanly possible.
     </p>
-<input type="text" placeholder="Insert problem here" name="subject"><br>
-<label for="name">Name</label>
-<input type="text" name="name" placeholder="Sherlock Holmes"><br>
-<label for="email">Email</label>
-<input type="email" name="email" placeholder="name@example.com"><br>
-<label for="body">Body</label>
-<textarea name="body" placeholder="Tell us what's bugging you! Or if you have any questions!"></textarea><br>
-<br>
-<button id="contactButton" class="apply-link">Send</button>
-</div>
+    <div class="formField">
+      <span>Subject:</span>
+      <input type="text" placeholder="Ex: Team Formation" name="subject"
+             class="contactTextField">
+    </div>
+    <div class="formField">
+      <span>Name:</span>
+      <input type="text" placeholder="Ex: John Doe" name="name"
+             class="contactTextField">
+    </div>
+    <div class="formField">
+      <span>Email:</span>
+      <input type="text" placeholder="Ex: jdoe@example.com" name="email"
+             class="contactTextField">
+    </div>
+    <div class="formField">
+      <span>Body:</span>
+      <textarea placeholder="Tell us what's up here!" name="body"
+             class="contactTextField">
+      </textarea>
+    </div>
+    <button id="contactButton" class="apply-link">Send!</button>
+  </div>
 </template>
 
 <style scoped>
@@ -23,16 +35,43 @@
     font-size: 50px;
   }
 
-  #info {
+  #contact {
     background: black;
     font-size: 20px;
     line-height: 30px;
+    height: 100vh;
     color: white;
-    text-align: left;
-    padding-top: 100px;
-    padding-left: 150px;
-    padding-right: 150px;
-    padding-bottom: 100px;
+  }
+  
+  .formField {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .contactTextField {
+    display: block;
+    color: white;
+    background: none;
+    border: none;
+    outline: none;
+    font-size: 20px;
+    width: 100%;
+    border-bottom: 2px solid white;
+  }
+  
+  #contactButton {
+    cursor: pointer;
+    outline: none;
+    width: 200px;
+    height: 50px;
+    font-size: 20px;
+    border-bottom-left-radius: 10% 50%;
+    border-bottom-right-radius: 10% 50%;
+    border-top-left-radius: 10% 50%;
+    border-top-right-radius: 10% 50%;
+  }
+  #contactButton:active {
+    background: black;
+    color: white;
   }
 </style>
 

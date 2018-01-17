@@ -4,9 +4,10 @@
          v-bind:style="{ minHeight: mobileMenu + 'px' }">
       <div id="bannerL" class="bannerContainer">
         <img id="bannerLogo" 
-             src="./assets/blackLogo.png"><router-link to="/" class="routerLink">
+             src="./assets/blackLogo.png">
+        <router-link to="/" class="routerLink">
         <p class="bannerText" id="kheTitle"
-           v-scroll-to="'#mainContainer'">KENT HACK ENOUGH</p>
+           @click="scrollTo('/', '#mainContainer')">KENT HACK ENOUGH</p>
         </router-link>
         
         <div id="hamburgMenu">
@@ -21,18 +22,26 @@
         
         <router-link to="/" class="routerLink">
           <p class="bannerText bannerLink"
-            v-scroll-to="'#info'">About</p>
+            @click="scrollTo('/', '#info')">About</p>
         </router-link>
         
         <router-link to="/" class="routerLink">
           <p class="bannerText bannerLink"
-            v-scroll-to="'#faq'">FAQ</p>
+            @click="scrollTo('/', '#faq')">FAQ</p>
         </router-link>
         <p class="bannerText bannerLink">Sponsors</p>
-        <p class="bannerText bannerLink">Contact</p>
         <p class="bannerText bannerLink"
-           v-scroll-to="'#map'">Map</p>
-        <p class="bannerText bannerLink" @click="dispLogin()">Login</p>
+           @click="navTo('/contact')">Contact</p>
+        <p class="bannerText bannerLink"
+           @click="scrollTo('/', '#map')">Map</p>
+        <p class="bannerText bannerLink" @click="dispRegister()"
+           v-if="user._id == ''">
+          Register/Login
+        </p>
+        <p class="bannerText bannerLink" @click='logout()'
+           v-if="user._id != ''">
+          Log out
+        </p>
         <div class="padding" style="width: 50px"></div>
       </div>
       
@@ -40,23 +49,36 @@
     <div class="darken" v-if="showLogin"
          @click="showLogin = !showLogin;"></div>
     <login v-if="showLogin"></login>
+    <div class="darken" v-if="showRegister"
+         @click="showRegister = !showRegister;"></div>
+    <register v-if="showRegister"></register>
+    
     
     <router-view/>
   </div>
 </template>
 
 <script>
+import scrollto from 'vue-scrollto';
+
 import login from './components/Login';
+import register from './components/Register';
 
 export default {
   name: 'app',
   components: {
     login,
+    register,
   },
   data() {
     return {
       showLogin: false,
+      showRegister: false,
+      
+      scrollToEl: '',
+      
       mobileMenu: 50,
+      
       user: {
         _id: '',
         email: 'test@sample.com',
@@ -89,7 +111,20 @@ export default {
     dispLogin: function() {
       // Normally we could do a one line function like this inside an @click attribute,
       // but this makes it easier to access from it's children
+      this.mobileMenu = 50;
       this.showLogin = !this.showLogin;
+    },
+    dispRegister: function() {
+      this.mobileMenu = 50;
+      this.showRegister = !this.showRegister;
+    },
+    switchLoginRegister: function() {
+      this.showRegister = !this.showRegister;
+      this.showLogin = !this.showLogin;
+    },
+    
+    logout: function() {
+      alert("Not implemented");
     },
 
     togMenu: function() {
@@ -98,6 +133,20 @@ export default {
       } else {
         this.mobileMenu = 50;
       }
+    },
+    
+    scrollTo: function(page, el) {
+      this.mobileMenu = 50;
+      if (this.$route.path !== page) {
+        this.$router.push(page);
+        this.scrollToEl = el;
+      } else {
+        scrollto.scrollTo(el, 300);
+      }
+    },
+    navTo: function(page) {
+      this.mobileMenu = 50;
+      this.$router.push(page);
     }
   }
 };
@@ -106,6 +155,7 @@ export default {
 <!-- Note! This style tag is GLOBAL. -->
 <style>
   html, body {
+    width: 100%;
     margin: 0;
     padding: 0;
   }
@@ -182,7 +232,7 @@ export default {
   #bannerLogo {
     filter: invert(100%);
     height: 40px;
-    width: 70px;
+    width: 60px;
     margin-top: 15px;
     margin-left: 10px;
     margin-right: 30px;
@@ -253,6 +303,24 @@ export default {
     }
   }
   
-  
+/*  This global class should be used on each widget  */
+  .widget {
+    text-align: left;
+    padding-top: 100px;
+    padding-left: 150px;
+    padding-right: 150px;
+    padding-bottom: 100px;
+    
+
+  }
+  @media only screen and (max-width: 800px) {
+    .widget {
+      padding-top: 100px;
+      padding-left: 15px;
+      padding-right: 15px;
+      padding-bottom: 100px;
+    }
+
+  }
   
 </style>

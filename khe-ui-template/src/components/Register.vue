@@ -1,63 +1,126 @@
 <template>
-    <div id="login">
-    <div id="darken"></div>
-<div class="popup">
+  <div id="register-dialog">
+    <span class="xOutWhite" @click="$parent.dispRegister()">x</span>
     
-    <h3>Log In:</h3>
+    <h4 style="font-size:30px;">Register</h4>
     
-    <q-field
-        icon="person"
-        helper="Username"
-        :error="usernameErr"
-        error-label="Invalid username! Sorry!"
-      >
-      <q-input v-model="$parent.user.username" />
-    </q-field>
-    <q-field
-        icon="security"
-        helper="Password"
-        :error="passErr"
-        error-label="Invalid password! Sorry!"
-      >
-      <q-input v-model="$parent.user.password" />
-    </q-field>
-    
+    <input id="login-username" 
+           class="textInput"
+           type="text" 
+           placeholder="you@website.com"
+           v-model="$parent.user.email"
+           />
     <br>
-    
+      
+    <input id="login-password" 
+           class="textInput" 
+           type="password" 
+           placeholder="Your password here!!"
+           />
     <br>
-    <a href="./#dashboard">
-    <button class="mdl-button mdl-js-button mdl-button--raised" >
-  SUBMIT
-</button>
-    </a>
-    
-    </div>
+    <input id="login-password-confirm" 
+           class="textInput" 
+           type="password" 
+           placeholder="Confirm your password here!"
+           />
+    <br>
+    <br>
+      
+    <button id="register-button" class="buttonInput" >
+      Register!
+    </button>
 
-    </div>
-
+    <button id="register-create-account" class="buttonInput"
+            @click="$parent.switchLoginRegister()">
+      Have an account? Log in!
+    </button>
+    <br>
+    <br>
+    <button id="forgot-pass-button" class="buttonInput">Forgot your password? No problem!</button>
+  </div>
 </template>
 
-
-
+<style scoped>
+  #register-dialog {
+    position: fixed;
+    background-color: black;
+    border: white 5px solid;
+    color: white;
+    text-align: center;
+    
+    border-radius: 10px;
+    left: 50%;
+    top: 100px;
+    transform: translateX(-50%);
+    right: auto 0;
+    min-width: 300px;
+    width: 50%;
+    min-height: 200px;
+    z-index: 1000;
+    
+    padding: 30px;
+    padding-bottom: 100px;
+  }
+  
+  .textInput {
+    width: 200px;
+    height: 30px;
+    margin-bottom: 10px;
+    
+    outline: none;
+    border: none;
+    box-shadow: inset rgba(0,0,0,.5) 2px 2px 5px;
+    
+    border-bottom-left-radius: 10% 50%;
+    border-bottom-right-radius: 10% 50%;
+    border-top-left-radius: 10% 50%;
+    border-top-right-radius: 10% 50%;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+  
+  .buttonInput {
+    transition-duration: .5s;
+    height: 30px;
+    
+    padding-right: 10px;
+    padding-left: 10px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+  }
+  .buttonInput:hover {
+    border: solid white 1px;
+    background: black;
+    color: white;
+  }
+  #register-button {
+    width: 120px;
+    
+    border-top-left-radius: 10% 50%;
+    border-bottom-left-radius: 10% 50%;
+  }
+  #register-create-account {
+    width: 170px;
+    border-top-right-radius: 10% 50%;
+    border-bottom-right-radius: 10% 50%;
+  }
+  #forgot-pass-button {
+    padding-right: 20px;
+    padding-left: 20px;
+    border-bottom-left-radius: 10% 50%;
+    border-bottom-right-radius: 10% 50%;
+    border-top-left-radius: 10% 50%;
+    border-top-right-radius: 10% 50%;
+  }
+</style>
 
 <script>
-
+export default {
+  name: 'Login',
+  data() {
+    return {
+    };
+  },
+};
 </script>
-
-<style>
-.popup {
-  width: 50%;
-  min-width: 500px;
-  min-height: 400px;
-  background-color: white;
-  position: absolute;
-  left: 0px;
-  right: 0px;
-  top: 100px;
-  margin: 0 auto;
-  z-index: 200;
-  box-shadow: 0px 20px 50px black;
-  padding: 20px;
-  padding-left: 50px;
-}
-</style>

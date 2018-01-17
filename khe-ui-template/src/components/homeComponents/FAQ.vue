@@ -1,5 +1,5 @@
 <template>
-  <div id="faq">
+  <div id="faq" class="widget">
     <h2 id="faqTitle">FAQ</h2>
     
 <!--    Outputs faq objects dynamically, as defined by the 'faqs' object in the data.-->
@@ -85,11 +85,6 @@ export default {
     font-size: 20px;
     line-height: 30px;
     color: black;
-    text-align: left;
-    padding-top: 100px;
-    padding-left: 150px;
-    padding-right: 150px;
-    padding-bottom: 100px;
   }
   
   .faqModule {

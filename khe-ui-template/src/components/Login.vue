@@ -24,7 +24,8 @@
       Log in!
     </button>
 
-    <button id="login-create-account" class="buttonInput">
+    <button id="login-create-account" class="buttonInput"
+            @click="$parent.switchLoginRegister()">
       No Account? Register!
     </button>
     <br>
@@ -46,8 +47,8 @@
     top: 100px;
     transform: translateX(-50%);
     right: auto 0;
-    min-width: 200px;
-    width: 500px;
+    min-width: 300px;
+    width: 50%;
     min-height: 200px;
     z-index: 1000;
     
@@ -88,7 +89,7 @@
     color: white;
   }
   #login-button {
-    width: 150px;
+    width: 140px;
     
     border-top-left-radius: 10% 50%;
     border-bottom-left-radius: 10% 50%;
