@@ -93,6 +93,7 @@ export default {
           demographic: false,   // allowed to use demographic info?
           first: null,         // is this your first hackathon?
           dietary: [],        // food restrictions seperated by |
+                              // Vegan, vegitarian, kosher, gluten free, allergy, other
           year: '',           // the year in school
           age: '',            // person's age
           gender: '',         // gender
