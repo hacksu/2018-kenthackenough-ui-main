@@ -35,11 +35,13 @@ module.exports = {
     }],
     
     'no-var': 0,
+    'no-trailing-spaces': 0,
     'comma-dangle': 0,
     'no-plusplus': 0,
     'object-shorthand': 0,
     'func-names': 0,
     'space-before-function-paren': 0,
+    'quotes': 1,
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
   }
