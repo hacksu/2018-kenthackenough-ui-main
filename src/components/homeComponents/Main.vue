@@ -1,8 +1,7 @@
 <template>
-  <div id="mainContainer">
-    <img id="logo"
-         src="../../assets/blackLogo.png">
-    <h1 id="title">Kent Hack Enough</h1>
+  <div id="main-container">
+    
+    <img id="logo" alt="Kent Hack Enough" src="../../assets/Logo_Full_Dark.svg" />
     
     <div id="titleInfo">
       <h2 id="date">October ?th - ?th</h2>
@@ -31,84 +30,12 @@
   </div>
 </template>
 
-<style scoped>
-  #mainContainer {
-    min-height: 100vh;
-    padding-bottom: 20px;
-  }
-h1, h2 {
-    font-weight: normal;
-  }
+<style>
 
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
+#main-container {
+  background-color: var(--bg-black);
+}
 
-  li {
-    display: inline-block;
-    margin: 0 10px;
-  }
-
-  a {
-    color: #42b983;
-  }
-  
-  
-  #container {
-    text-align: center;
-  }
-  
-  #logo {
-    animation: fadein 1s linear;
-    margin-top: 100px;
-    margin-bottom: -60px;
-    /* This margin makes the logo look more centered */
-    margin-right: 25px;
-  }
-  
-  #title {
-    font-size: 35px;
-  }
-  
-  #location {
-    margin-top: -10px;
-  }
-  
-  .mainBtn {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    min-width: 300px;
-    padding: 10px 40px 10px 40px;
-    background: white;
-    font-size: 20px;
-/*    border: solid black 2px;*/
-    border-top-left-radius: 10% 50%;
-    border-top-right-radius: 10% 50%;
-    border-bottom-left-radius: 10% 50%;
-    border-bottom-right-radius: 10% 50%;
-    margin: 10px;
-    transition-duration: .2s;
-    cursor: pointer;
-    outline: none;
-    
-    box-shadow: 3px 3px 10px rgba(0,0,0,.5);
-  }
-  .mainBtn:hover {
-    
-    background: black;
-    color: white;
-    border: solid gray 2px;
-  }
-  
-  
-  @keyframes fadein {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
 </style>
 
 <script>
