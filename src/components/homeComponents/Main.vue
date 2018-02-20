@@ -185,7 +185,7 @@
     transform: translateX(0%);
   }
   50% {
-    transform: translateX(-10%);
+    transform: translateX(-15%);
   }
 }
 
@@ -207,8 +207,8 @@ export default {
     };
   },
   mounted() {
-    const el = document.querySelector('#House');
-    console.log(el);
+    const houseEl = document.querySelector('#House');
+    console.log(houseEl);
   }
 };
 </script>
