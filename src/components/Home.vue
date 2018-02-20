@@ -1,9 +1,9 @@
 <template>
   <div id="home-container">
     <main-landing></main-landing>
-    <info></info>
-    <faq></faq>
-    <kentmap></kentmap>
+    <!-- <info></info> -->
+    <!-- <faq></faq> -->
+    <!-- <kentmap></kentmap> -->
   </div>
 </template>
 

@@ -6,7 +6,7 @@
     <article id="title-info">
       <h3 id="tagline">The <span class="yellow-text">(Halloween)</span> Party Hackathon.</h3>
       <br>
-      <h2 id="date">October ?th - ?th, 2018</h2>
+      <h2 id="date">October 2018</h2>
       <h2 id="location">Kent State University Library</h2>
     </article>
 
@@ -137,18 +137,35 @@
   top: 19.25%;
   left: -18%;
   width: 44.5%;
+
+  animation: cloudFloat 20s linear infinite;
 }
 
 #cloud-2 {
   top: 44.25%;
   left: 76%;
   width: 38.3%;
+
+  animation: cloudFloat 17s linear infinite;
+  animation-direction: reverse;
 }
 
 #cloud-3 {
   top: 6.875%;
   left: 72.7%;
   width: 15.4%;
+
+  animation: cloudFloat 15s linear infinite;
+  animation-delay: 5s;
+}
+
+@keyframes cloudFloat {
+  0% {
+    transform: translateX(0%);
+  }
+  50% {
+    transform: translateX(-10%);
+  }
 }
 
 </style>
