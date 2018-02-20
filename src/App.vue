@@ -160,6 +160,11 @@ export default {
 
 <!-- Note! This style tag is GLOBAL. -->
 <style>
+  /* Reset */
+  * {
+    box-sizing: border-box;
+  }
+
   :root {
     --bg-black: #252830;
     --dark-grey: #595e6e;
@@ -179,11 +184,9 @@ export default {
 
   html, body {
     width: 100%;
-    margin: 0;
-    padding: 0;
 
     font-family: 'Merriweather', serif;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 300;
 
     background-color: var(--bg-black);
@@ -191,6 +194,12 @@ export default {
 
   h1, h2, h3, h4 {
     font-family: 'Oswald', sans-serif;
+  }
+
+  @media screen and (min-width: 768px) {
+    html, body {
+      font-size: 16px;
+    }
   }
   
 </style>

@@ -5,13 +5,12 @@
     
     <article id="title-info">
       <h3 id="tagline">The <span class="yellow-text">(Halloween)</span> Party Hackathon.</h3>
-      <br>
       <h2 id="date">October 2018</h2>
       <h2 id="location">Kent State University Library</h2>
     </article>
 
     <div id="main-background">
-      <img id="hill-group" src="../../assets/Hill.svg">
+      <hill></hill>
       <img id="trees" src="../../assets/Trees.svg">
       <img id="moon" src="../../assets/Moon.svg">
       <img id="cloud-1" src="../../assets/Cloud 1.svg">
@@ -38,23 +37,29 @@
 
 <style>
 
+/* We're using a mobile first approach. All of the styles above the breakpoint are for mobile */
+
 #main-container {
   position: relative;
 
   display: grid;
   grid-template-rows: 3em 1fr 2fr;
   grid-template-columns: 1fr minmax(min-content, 42em) 1fr;
+  justify-content: center;
+  align-items: start;
 
   width: 100%;
   min-height: 100vh;
 
   background-color: var(--dark-grey);
+
 }
 
 #logo {
-  width: 100%;
-  max-width: 22em;
+  width: 75%;
+  max-width: 22rem;
   margin: 0 auto;
+  padding: 0 1rem;
 
   grid-column: 2 / span 1;
   grid-row: 2 / span 1;
@@ -67,6 +72,8 @@
 
   text-align: center;
   z-index: 1;
+
+  margin-top: 1rem;
 }
 
 #title-info h2, #title-info h3 {
@@ -76,19 +83,33 @@
 }
 
 #tagline {
-  font-size: 1.777em;
+  font-size: 1.777rem;
 }
 
 #date {
-  font-size: 2.369em;
+  font-size: 2.369rem;
 }
 
 #location {
-  font-size: 1.777em;
+  font-size: 1.777rem;
 }
 
 .yellow-text {
   color: var(--yellow);
+}
+
+@media screen and (min-width: 768px) {
+  #main-container {
+
+  }
+
+  #logo {
+    width: 100%;
+  }
+
+  #title-info {
+    margin-top: 0rem;
+  }
 }
 
 /* * * * * * * * * * *
@@ -173,11 +194,21 @@
 
 
 <script>
+// import {TweenMax, Power0, Power1, Back, TimelineLite} from "gsap";
+// import { TweenMax, TimelineLite } from 'gsap';
+
+import Hill from './Hill';
+
 export default {
   name: 'Main',
+  components: { Hill },
   data() {
     return {
     };
   },
+  mounted() {
+    const el = document.querySelector('#House');
+    console.log(el);
+  }
 };
 </script>
