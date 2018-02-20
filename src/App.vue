@@ -181,6 +181,16 @@ export default {
     width: 100%;
     margin: 0;
     padding: 0;
+
+    font-family: 'Merriweather', serif;
+    font-size: 16px;
+    font-weight: 300;
+
+    background-color: var(--bg-black);
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Oswald', sans-serif;
   }
   
 </style>
