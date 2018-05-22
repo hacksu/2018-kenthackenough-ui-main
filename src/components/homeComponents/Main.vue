@@ -19,16 +19,15 @@
     </div>
     
     <!-- This div is for once the application is launched, when the user is NOT logged in -->
-    <div id="applicationSite" v-if="false">
+    <div id="applicationSite" v-if="0">
       <button class="mainBtn" id="apply"
               @click="$parent.$parent.dispRegister()">APPLY NOW!</button>
       <br>
-    <div id="divider"></div>
-      <button class="mainBtn" id="login" 
+      <button class="mainBtn" id="login"
               @click="$parent.$parent.dispLogin()">Login</button>
     </div>
     
-    <div id="applicationSiteLoggedIn" v-if="false">
+    <div id="applicationSiteLoggedIn" v-if="0">
       <button class="mainBtn" id="apply"
               @click="$parent.$parent.dispRegister()">Fill out your application!</button>
     </div>
@@ -81,41 +80,6 @@
   font-family: 'Merriweather', serif;
   font-weight: 300;
   color: var(--white);
-}
-
-#applicationSite, #applicationSiteLoggedIn {
-  grid-area: 3 / 2;
-  margin: 15rem;
-  text-align: center;
-  z-index: 1;
-}
-
-#apply, #login {
-  width: 100%;
-  position: relative;
-  
-  display: inline-block;
-  border: 2px solid var(--orange);
-  color: var(--white);
-  background-color: Transparent;
-  padding: 1rem 1rem;
-  z-index: 1;
-
-  transition: all 0.5s;
-}
-
-#apply:hover, #login:hover {
-  cursor: pointer;
-  position: relative;
-  background-color: var(--orange);
-  color: var(--black); 
-  transition: 0.5s;
-}
-
-#divider {
-  width: 5px;
-  height: auto;
-  display: inline-block;
 }
 
 #tagline {
