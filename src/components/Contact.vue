@@ -31,6 +31,15 @@
 
 <style scoped>
 
+  #contact {
+    background-color: var(--bg-color);
+    padding: 2rem 6rem;
+    font-size: 20px;
+    line-height: 30px;
+    height: 100vh;
+    color: white;
+  }
+
   #contactTitle {
     color: var(--orange);
   }
