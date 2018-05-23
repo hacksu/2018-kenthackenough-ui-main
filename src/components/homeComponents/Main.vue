@@ -32,6 +32,7 @@
       <img id="cloud-2" src="../../assets/Cloud 2.svg">
       <img id="cloud-3" src="../../assets/Cloud 3.svg">
     </div>
+
   
   </main>
 </template>
@@ -81,6 +82,42 @@
   font-family: 'Merriweather', serif;
   font-weight: 300;
   color: var(--white);
+}
+
+#applicationSite, #applicationSiteLoggedIn {
+  grid-area: 3 / 2;
+  margin-left: 15rem;
+  margin-right: 15rem;
+  text-align: center;
+  z-index: 1;
+}
+
+#apply, #login {
+  width: 100%;
+  position: relative;
+  
+  display: inline-block;
+  border: 2px solid var(--orange);
+  color: var(--white);
+  background-color: Transparent;
+  padding: 1rem 1rem;
+  z-index: 1;
+
+  transition: all 0.5s;
+}
+
+#apply:hover, #login:hover {
+  cursor: pointer;
+  position: relative;
+  background-color: var(--orange);
+  color: var(--black); 
+  transition: 0.5s;
+}
+
+#divider {
+  width: 5px;
+  height: auto;
+  display: inline-block;
 }
 
 #tagline {
