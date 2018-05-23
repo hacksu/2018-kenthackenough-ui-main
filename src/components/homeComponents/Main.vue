@@ -7,8 +7,23 @@
       <h3 id="tagline">The <span class="yellow-text">(Halloween)</span> Party Hackathon.</h3>
       <h2 id="date">October 2018</h2>
       <h2 id="location">Kent State University Library</h2>
+    
+    
+     <!-- This div is for once the application is launched, when the user is NOT logged in -->
+     <div id="applicationSite" v-if="1">
+       <button class="mainBtn" id="apply"
+               @click="$parent.$parent.dispRegister()">APPLY NOW!</button>
+       <br>
+       <button class="mainBtn" id="login"
+               @click="$parent.$parent.dispLogin()">Login</button>
+     </div>
+     
+     <div id="applicationSiteLoggedIn" v-if="0">
+       <button class="mainBtn" id="apply"
+               @click="$parent.$parent.dispRegister()">Fill out your application!</button>
+     </div>
     </article>
-
+    
     <div id="main-background">
       <hill></hill>
       <img id="trees" src="../../assets/Trees.svg">
@@ -17,25 +32,11 @@
       <img id="cloud-2" src="../../assets/Cloud 2.svg">
       <img id="cloud-3" src="../../assets/Cloud 3.svg">
     </div>
-    
-    <!-- This div is for once the application is launched, when the user is NOT logged in -->
-    <div id="applicationSite" v-if="0">
-      <button class="mainBtn" id="apply"
-              @click="$parent.$parent.dispRegister()">APPLY NOW!</button>
-      <br>
-      <button class="mainBtn" id="login"
-              @click="$parent.$parent.dispLogin()">Login</button>
-    </div>
-    
-    <div id="applicationSiteLoggedIn" v-if="0">
-      <button class="mainBtn" id="apply"
-              @click="$parent.$parent.dispRegister()">Fill out your application!</button>
-    </div>
   
   </main>
 </template>
 
-<style>
+<style scoped> 
 
 /* We're using a mobile first approach. All of the styles above the breakpoint are for mobile */
 
@@ -97,6 +98,12 @@
 .yellow-text {
   color: var(--yellow);
 }
+  
+  .mainBtn {
+    
+  }
+  
+/*  BREAKPOINT:*/
 
 @media screen and (min-width: 768px) {
   #main-container {
