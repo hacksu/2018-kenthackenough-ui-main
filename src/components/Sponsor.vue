@@ -1,17 +1,17 @@
 <template>
 <div id="SponsorForm">
-  <h1>Interested in Sponsoring KHE?</h1>
+  <h1 style="color: var(--orange);">Interested in Sponsoring KHE?</h1>
   <p>We want to make sure you feel like you're getting your money's worth when you sponsor our event. We have tons of options for letting you promote your brand, recruit smart, innovative people, and giving back to the tech community!</p>
   <form action="http://10.14.213.11:3000/test/sponsors/cart" method="post">
     <div id="form">
-      <span style="font-weight:bold;">
+      <span style="font-weight:bold; color: var(--orange);">
         Company Name: 
         <input type="text" placeholder="Company Name Here"
              name="companyName"
              v-model="companyName"
              required>
       </span>
-      <span style="font-weight:bold;">
+      <span style="font-weight:bold; color: var(--orange);">
         Contact Email: 
         <input type="email" placeholder="contact@company.com"
              name="contactEmail"
@@ -78,9 +78,9 @@
   .detailsBubble {
     position: absolute;
 /*    top: -10px;*/
-    padding:15px;
+    padding: 15px;
     font-size: 10px;
-    background: #A1FD9C;
+    background: var(--orange);
     height: 100px;
     margin-top: -140px;
     width: 100px;
@@ -94,10 +94,11 @@
     left:50px; /* controls horizontal position */
     border-width:15px 15px 0; /* vary these values to change the angle of the vertex */
     border-style:solid;
-    border-color: #A1FD9C transparent;
+    border-color: var(--orange) transparent;
     /* reduce the damage in FF3.0 */
     display:block;
     width:0;
+
   }
 
   .details {
@@ -115,7 +116,7 @@
     float: left;
   }
   
-  /* The container */
+  /* The text container */
 .container {
     display: block;
     position: relative;
@@ -146,16 +147,20 @@
   background-color: #eee;
   border: solid black 1px;
   border-radius: 10%;
+
+  transition: all .5s;
 }
 
 /* On mouse-over, add a grey background color */
 .container:hover input ~ .checkmark {
     background-color: #ccc;
+    transition: .5s;
 }
 
 /* When the checkbox is checked, add a blue background */
 .container input:checked ~ .checkmark {
     background-color: #2196F3;
+    transition: .5s;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
@@ -181,20 +186,39 @@
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
-}
-  
+} 
+
+  /* Names of sponsor benefit package options */
+  .name {
+    
+  }
+
+  p {
+    color: white;
+  }
+
+  h3 {
+    color: var(--orange);
+  }
+
   #SponsorForm {
     padding: 200px;
-    padding-top: 100px;
+    padding-top: 50px;
   }
+
+  /* The whole benefit container */
   .benefit {
     display: flex;
     justify-content: space-between;
+    border-radius: 10px;
+    background-color: var(--light-grey);
     box-shadow: 0px 0px 10px rgba(0,0,0,.5);
 /*    margin: 10px 10% 10px 10%;*/
     padding: 20px;
     margin-top: 10px;
     font-size: 22px;
+
+    transition: all .5s;
   }
   
   .benefitBox {
@@ -216,11 +240,12 @@
     border-radius: 2%;
   }
   
+  /* Running total box */
   #total {
     position: fixed;
     bottom: 0;
     right: 0;
-    background: lightgreen;
+    background: var(--orange);
     padding: 20px;
     font-size: 18px;
     border-top: solid black 1px;
@@ -235,25 +260,43 @@
   }
   
   #form input {
+    display: block;
     padding-top: 10px;
     font-size: 14px;
     width: 300px;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: lightGray 1px solid;
+    background: none;
+    border: none;
     outline: none;
+    color: white;
+    border-bottom: var(--light-grey) 2px solid;
+
+    transition: all .3s;
   }
+
   #form input:focus {
-    border-bottom: lightGreen 1px solid;
+    border-bottom: var(--orange) 2px solid;
   }
   
+  /* Submit sponsor form button */
   #submit {
+    position: relative;
+    text-align: center;
+    display: inline-block;
+    border: 2px solid var(--orange);
+    color: var(--white);
+    background-color: Transparent;
     font-size: 18px;
     padding: 10px;
     margin-top: 30px;
-    background: white;
-    border: solid black 1px;
+
+    transition: all .5s;
+  }
+
+  #submit:hover {
+  cursor: pointer;
+  position: relative;
+  background-color: var(--orange);
+  color: var(--bg-black);
   }
   
   
