@@ -63,6 +63,8 @@
 <script>
 import scrollto from 'vue-scrollto';
 import { ApiWrapper } from 'khe-frontend-lib';
+// import apiConfig from './config/config';
+
 
 import login from './components/Login';
 import register from './components/Register';
@@ -109,6 +111,8 @@ export default {
           extra: '',
         },
       },
+      
+      // wrapper: new ApiWrapper(apiConfig)
     };
   },
 
