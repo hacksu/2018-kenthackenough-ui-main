@@ -1,4 +1,5 @@
 <template>
+
 <div id="sponsors">
   
   <h1>Our sponsors:</h1>
@@ -44,9 +45,9 @@ export default {
   .detailsBubble {
     position: absolute;
 /*    top: -10px;*/
-    padding:15px;
+    padding: 15px;
     font-size: 10px;
-    background: #A1FD9C;
+    background: var(--orange);
     height: 100px;
     margin-top: -140px;
     width: 100px;
@@ -60,10 +61,11 @@ export default {
     left:50px; /* controls horizontal position */
     border-width:15px 15px 0; /* vary these values to change the angle of the vertex */
     border-style:solid;
-    border-color: #A1FD9C transparent;
+    border-color: var(--orange) transparent;
     /* reduce the damage in FF3.0 */
     display:block;
     width:0;
+
   }
   .details {
     display: block;
@@ -79,7 +81,7 @@ export default {
     float: left;
   }
   
-  /* The container */
+  /* The text container */
 .container {
     display: block;
     position: relative;
@@ -108,14 +110,18 @@ export default {
   background-color: #eee;
   border: solid black 1px;
   border-radius: 10%;
+
+  transition: all .5s;
 }
 /* On mouse-over, add a grey background color */
 .container:hover input ~ .checkmark {
     background-color: #ccc;
+    transition: .5s;
 }
 /* When the checkbox is checked, add a blue background */
 .container input:checked ~ .checkmark {
     background-color: #2196F3;
+    transition: .5s;
 }
 /* Create the checkmark/indicator (hidden when not checked) */
 .checkmark:after {
@@ -138,12 +144,14 @@ export default {
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
+
 }
   
   #sponsors {
     padding: 200px;
-    padding-top: 100px;
+    padding-top: 50px;
   }
+
   .sponsorImage {
     max-width: 300px;
     filter: grayscale(100%);
