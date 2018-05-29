@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <!-- <div id="banner"
+     <div id="banner"
          v-bind:style="{ minHeight: mobileMenu + 'px' }">
       <div id="bannerL" class="bannerContainer">
-        <img id="bannerLogo" 
-             src="./assets/blackLogo.png">
+<!--        <img id="bannerLogo" 
+             src="./assets/blackLogo.png">-->
         <router-link to="/" class="routerLink">
         <p class="bannerText" id="kheTitle"
            @click="scrollTo('/', '#mainContainer')">KENT HACK ENOUGH</p>
@@ -12,6 +12,7 @@
         
         <div id="hamburgMenu">
           <img id="hamburgIcon" src="../static/Hamburger_icon.svg.png"
+               width="50"
              @click="togMenu()">
         </div>
       </div>
@@ -51,15 +52,17 @@
     <login v-if="showLogin"></login>
     <div class="darken" v-if="showRegister"
          @click="showRegister = !showRegister;"></div>
-    <register v-if="showRegister"></register> -->
+    <register v-if="showRegister"></register> 
     
     
     <router-view/>
+    
   </div>
 </template>
 
 <script>
 import scrollto from 'vue-scrollto';
+import { ApiWrapper } from 'khe-frontend-lib';
 
 import login from './components/Login';
 import register from './components/Register';
@@ -163,6 +166,24 @@ export default {
   /* Reset */
   * {
     box-sizing: border-box;
+  }
+  
+  #banner {
+    display: flex;
+    justify-content: space-between;
+    color: white;
+  }
+  .routerLink {
+    color: white;
+    margin-right: 20px;
+    margin-left: 20px;
+  }
+  .bannerContainer {
+    display: flex;
+  }
+  
+  .widget {
+    padding: 100px 100px 100px 100px;
   }
 
   :root {
