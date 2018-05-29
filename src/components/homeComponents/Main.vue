@@ -110,7 +110,7 @@
   cursor: pointer;
   position: relative;
   background-color: var(--orange);
-  color: var(--black); 
+  color: var(--bg-black); 
   transition: 0.5s;
 }
 
