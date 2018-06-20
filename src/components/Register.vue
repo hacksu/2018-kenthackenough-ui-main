@@ -1,27 +1,28 @@
 <template>
-  <div id="register-dialog">
-    <span class="xOutWhite" @click="$parent.dispRegister()">x</span>
+  <div id="register-dialog" class="vines">
+    <span class="x-out-white" @click="$parent.dispRegister()">x</span>
     
-    <h4 style="font-size:30px;">Register</h4>
+    <h4 id="register-title">Register</h4>
+    <h6 id="register-subtitle">We've been waiting for you!</h6>
     
     <input id="login-username" 
-           class="textInput"
+           class="text-input"
            type="text" 
-           placeholder="you@website.com"
+           placeholder="Email"
            v-model="$parent.user.email"
            />
     <br>
-      
+      <br>
     <input id="login-password" 
-           class="textInput" 
+           class="text-input" 
            type="password" 
-           placeholder="Your password here!!"
+           placeholder="Password"
            />
     <br>
     <input id="login-password-confirm" 
-           class="textInput" 
+           class="text-input" 
            type="password" 
-           placeholder="Confirm your password here!"
+           placeholder="Confirm password"
            />
     <br>
     <br>
@@ -30,23 +31,23 @@
       Register!
     </button>
 
-    <button id="register-create-account" class="buttonInput"
+    <span id="register-create-account" class="buttonInput"
             @click="$parent.switchLoginRegister()">
       Have an account? Log in!
-    </button>
+    </span>
     <br>
     <br>
-    <button id="forgot-pass-button" class="buttonInput">Forgot your password? No problem!</button>
+    <div style="opacity: .6;text-decoration: underline;cursor: pointer;">Forgot your password? Click here!</div>
   </div>
 </template>
 
 <style scoped>
   #register-dialog {
     position: fixed;
-    background-color: black;
-    border: white 5px solid;
-    color: white;
-    text-align: center;
+    background-color: #111;
+/*    border: white 5px solid;*/
+    color: var(--orange);
+    text-align: left;
     
     border-radius: 10px;
     left: 50%;
@@ -58,25 +59,53 @@
     min-height: 200px;
     z-index: 1000;
     
-    padding: 30px;
-    padding-bottom: 100px;
+    padding: 0px;
+    padding-bottom: 40px;
   }
   
-  .textInput {
-    width: 200px;
-    height: 30px;
+  .vines {
+    box-sizing: border-box;
+    border: 30px solid rgba(0,0,0,0.5);
+    border-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/vine-border-image.svg);
+    border-image-repeat: round;
+    border-image-slice: 97;
+    border-image-width: 1;
+    border-image-outset: .4;
+  }
+  
+  #register-title {
+    font-size: 60px;
+    color: var(--orange);
+    padding: 0px;
+    margin-top: 0px;
     margin-bottom: 10px;
-    
-    outline: none;
+  }
+  #register-subtitle {
+    font-size: 20px;
+    color: var(--orange);
+    margin-top: 0px;
+    margin-bottom: 30px;
+    font-style: italic;
+    opacity: .7;
+  }
+  
+  .text-input {
+    background: none;
+    color: white;
     border: none;
-    box-shadow: inset rgba(0,0,0,.5) 2px 2px 5px;
-    
-    border-bottom-left-radius: 10% 50%;
-    border-bottom-right-radius: 10% 50%;
-    border-top-left-radius: 10% 50%;
-    border-top-right-radius: 10% 50%;
-    padding-right: 10px;
-    padding-left: 10px;
+    border-bottom: solid 2px gray;
+    width: 80%;
+    padding-top: 5px;
+    max-width: 350px;
+    margin: 10px 0px 10px 0px;
+  }
+  
+  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    opacity: .8; 
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    opacity: .8
   }
   
   .buttonInput {
@@ -89,29 +118,13 @@
     border: none;
     cursor: pointer;
   }
-  .buttonInput:hover {
-    border: solid white 1px;
-    background: black;
-    color: white;
-  }
   #register-button {
-    width: 120px;
-    
-    border-top-left-radius: 10% 50%;
-    border-bottom-left-radius: 10% 50%;
-  }
-  #register-create-account {
-    width: 170px;
-    border-top-right-radius: 10% 50%;
-    border-bottom-right-radius: 10% 50%;
-  }
-  #forgot-pass-button {
-    padding-right: 20px;
-    padding-left: 20px;
-    border-bottom-left-radius: 10% 50%;
-    border-bottom-right-radius: 10% 50%;
-    border-top-left-radius: 10% 50%;
-    border-top-right-radius: 10% 50%;
+    width: 50%;
+    padding: 10px 0px 30px 0px;
+    min-width: 120px;
+    background: var(--orange);
+    border: 1px solid var(--orange);
+    color: black;
   }
 </style>
 

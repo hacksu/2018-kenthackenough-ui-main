@@ -54,9 +54,11 @@
       </div>
       
     </div>
+    
     <div class="darken" v-if="showLogin"
          @click="showLogin = !showLogin;"></div>
     <login v-if="showLogin"></login>
+    
     <div class="darken" v-if="showRegister"
          @click="showRegister = !showRegister;"></div>
     <register v-if="showRegister"></register> 
@@ -175,10 +177,20 @@ export default {
     box-sizing: border-box;
   }
   
+  .darken {
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.7);
+    z-index: 99;
+  }
+  
   #banner {
     display: flex;
     justify-content: space-between;
     color: white;
+    z-index: 98;
   }
   
   .bannerContainer {
@@ -187,6 +199,13 @@ export default {
   
   .widget {
     padding: 100px 100px 100px 100px;
+  }
+  
+  .x-out-white {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
   }
 
   :root {
