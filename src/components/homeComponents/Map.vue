@@ -26,7 +26,7 @@
   }
   
   #map {
-    background: black;
+    background: var(--purple);
     color: white;
     display: flex;
     flex-flow: row wrap;

@@ -1,11 +1,12 @@
 <template>
   <div id="login-dialog">
-    <span class="xOutWhite" @click="$parent.dispLogin">x</span>
+    <span class="x-out-white" @click="$parent.dispLogin">x</span>
     
-    <h4 style="font-size:30px;">Log in</h4>
+    <h4 id="login-title">Log in</h4>
+    <h6 id="login-subtitle">...if you dare!!!</h6>
     
     <input id="login-username" 
-           class="textInput"
+           class="text-input"
            type="text" 
            placeholder="you@website.com"
            v-model="$parent.user.email"
@@ -13,24 +14,24 @@
     <br>
       
     <input id="login-password" 
-           class="textInput" 
+           class="text-input" 
            type="password" 
            placeholder="Your password here!!"
            />
     <br>
     <br>
       
-    <button id="login-button" class="buttonInput" >
+    <button id="login-button" >
       Log in!
     </button>
 
-    <button id="login-create-account" class="buttonInput"
+    <span id="login-create-account"
             @click="$parent.switchLoginRegister()">
       No Account? Register!
-    </button>
+    </span>
     <br>
     <br>
-    <button id="forgot-pass-button" class="buttonInput">Forgot your password? No problem!</button>
+    <div id="forgot-pass-button">Forgot your password? No problem!</div>
   </div>
 </template>
 
@@ -39,8 +40,8 @@
     position: fixed;
     background-color: black;
     border: white 5px solid;
-    color: white;
-    text-align: center;
+    color: var(--orange);
+    text-align: left;
     
     border-radius: 10px;
     left: 50%;
@@ -56,44 +57,31 @@
     padding-bottom: 100px;
   }
   
-  .textInput {
-    width: 200px;
-    height: 30px;
+  #login-title {
+    font-size: 60px;
+    color: var(--orange);
+    padding: 0px;
+    margin-top: 0px;
     margin-bottom: 10px;
-    
-    outline: none;
-    border: none;
-    box-shadow: inset rgba(0,0,0,.5) 2px 2px 5px;
-    
-    border-bottom-left-radius: 10% 50%;
-    border-bottom-right-radius: 10% 50%;
-    border-top-left-radius: 10% 50%;
-    border-top-right-radius: 10% 50%;
-    padding-right: 10px;
-    padding-left: 10px;
+  }
+  #login-subtitle {
+    font-size: 20px;
+    color: var(--orange);
+    margin-top: 0px;
+    margin-bottom: 30px;
+    font-style: italic;
+    opacity: .7;
   }
   
-  .buttonInput {
-    transition-duration: .5s;
-    height: 30px;
-    
-    padding-right: 10px;
-    padding-left: 10px;
-    outline: none;
-    border: none;
-    cursor: pointer;
-  }
-  .buttonInput:hover {
-    border: solid white 1px;
-    background: black;
-    color: white;
-  }
   #login-button {
-    width: 140px;
-    
-    border-top-left-radius: 10% 50%;
-    border-bottom-left-radius: 10% 50%;
+    width: 50%;
+    padding: 10px 0px 10px 0px;
+    min-width: 120px;
+    background: var(--orange);
+    border: 1px solid var(--orange);
+    color: black;
   }
+  
   #login-create-account {
     width: 150px;
     border-top-right-radius: 10% 50%;

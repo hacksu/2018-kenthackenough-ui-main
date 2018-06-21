@@ -207,6 +207,17 @@ export default {
     right: 5px;
     cursor: pointer;
   }
+  
+  .text-input {
+    background: none;
+    color: white;
+    border: none;
+    border-bottom: solid 2px gray;
+    width: 80%;
+    padding-top: 5px;
+    max-width: 350px;
+    margin: 10px 0px 10px 0px;
+  }
 
   :root {
     --bg-black: #252830;
@@ -216,8 +227,11 @@ export default {
     --white: #ffffff;
 
     --orange: #ff936b;
+    --dark-orange: #ee835a;
     --pink: #ff74b9;
     --green: #82fa6b;
+    --dark-green: #004529;
+    --darker-green: #003229;
     --blue: #64CDF6;
     --yellow: #effc6a;
     --moon: #fcfede;

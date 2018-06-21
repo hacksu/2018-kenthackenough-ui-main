@@ -5,7 +5,7 @@
     
     <article id="title-info">
       <h3 id="tagline">The <span class="yellow-text">(Halloween)</span> Party Hackathon.</h3>
-      <h2 id="date">October 2018</h2>
+      <h2 id="date">October 19-21st, 2018</h2>
       <h2 id="location">Kent State University Library</h2>
     
     

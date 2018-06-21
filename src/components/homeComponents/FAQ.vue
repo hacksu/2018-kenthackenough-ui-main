@@ -81,7 +81,11 @@ export default {
   }
   
   #faq {
-    background: white;
+    background-color: var(--orange);
+    background-image: radial-gradient(var(--dark-orange) 15%, transparent 16%),
+      radial-gradient(var(--dark-orange) 15%, transparent 16%);
+    background-size:60px 60px;
+    background-position: 0 0, 30px 30px;
     font-size: 20px;
     line-height: 30px;
     color: black;
@@ -91,6 +95,7 @@ export default {
     box-shadow: 1px 1px 10px rgba(0,0,0,.5);
     padding: 10px 20px 10px 20px;
     margin: 5px;
+    background: white;
   }
   
   .question {

@@ -27,7 +27,7 @@
     <br>
     <br>
       
-    <button id="register-button" class="buttonInput" >
+    <button id="register-button" >
       Register!
     </button>
 
@@ -89,16 +89,7 @@
     opacity: .7;
   }
   
-  .text-input {
-    background: none;
-    color: white;
-    border: none;
-    border-bottom: solid 2px gray;
-    width: 80%;
-    padding-top: 5px;
-    max-width: 350px;
-    margin: 10px 0px 10px 0px;
-  }
+  
   
   ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     opacity: .8; 
@@ -120,7 +111,7 @@
   }
   #register-button {
     width: 50%;
-    padding: 10px 0px 30px 0px;
+    padding: 10px 0px 10px 0px;
     min-width: 120px;
     background: var(--orange);
     border: 1px solid var(--orange);

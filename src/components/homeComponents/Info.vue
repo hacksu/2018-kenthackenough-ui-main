@@ -13,10 +13,11 @@
   }
   
   #info {
-    background: black;
-    font-size: 20px;
+    background-color: var(--darker-green);
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.02) 35px, rgba(255,255,255,.02) 70px);    font-size: 20px;
     line-height: 30px;
     color: white;
+    min-height: 80vh;
   }
 </style>
 
