@@ -11,10 +11,10 @@
     
      <!-- This div is for once the application is launched, when the user is NOT logged in -->
      <div id="applicationSite" v-if="1">
-       <button class="mainBtn" id="apply"
+       <button class="main-btn" id="apply"
                @click="$parent.$parent.dispRegister()">APPLY NOW!</button>
        <br>
-       <button class="mainBtn" id="login"
+       <button class="main-btn" id="login"
                @click="$parent.$parent.dispLogin()">Login</button>
      </div>
      
@@ -102,6 +102,9 @@
   background-color: Transparent;
   padding: 1rem 1rem;
   z-index: 1;
+  margin-top: 10px;
+  background: var(--bg-black);
+  font-size: 20px;
 
   transition: all 0.5s;
 }
