@@ -72,7 +72,7 @@
 <script>
 import scrollto from 'vue-scrollto';
 import { ApiWrapper } from 'khe-frontend-lib';
-// import apiConfig from './config/config';
+import apiConfig from './config/config';
 
 
 import login from './components/Login';
@@ -95,7 +95,7 @@ export default {
       
       user: {
         _id: '',
-        email: 'test@sample.com',
+        email: '',
         password: '',
         key: '',
         role: '',
@@ -121,12 +121,13 @@ export default {
         },
       },
       
-      // wrapper: new ApiWrapper(apiConfig)
+      wrapper: new ApiWrapper(apiConfig)
     };
   },
 
   mounted() {
-
+    var user = this.wrapper.userManager.getLocalUser();
+    console.log(user);
   },
 
   methods: {

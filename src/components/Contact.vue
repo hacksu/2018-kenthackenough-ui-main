@@ -6,28 +6,74 @@
     </p>
     <div class="formField">
       <span id="subjectTitle">Subject:</span>
-      <input type="text" placeholder="Team Formation" name="subject"
-             class="contactTextField">
+      <input type="text" 
+             placeholder="Team Formation" 
+             name="subject"
+             class="contactTextField"
+             v-model="subject">
     </div>
     <div class="formField">
       <span id="subjectTitle">Name:</span>
-      <input type="text" placeholder="John Doe" name="name"
-             class="contactTextField">
+      <input type="text" 
+             placeholder="John Doe" 
+             name="name"
+             class="contactTextField"
+             v-model="name">
     </div>
     <div class="formField">
       <span id="subjectTitle">Email:</span>
-      <input type="text" placeholder="jdoe@example.com" name="email"
-             class="contactTextField">
+      <input type="text" 
+             placeholder="jdoe@example.com" 
+             name="email"
+             class="contactTextField"
+             v-model="email">
     </div>
     <div class="formField">
       <span id="subjectTitle">Body:</span>
-      <textarea placeholder="Tell us what's up here!" name="body"
-             class="contactTextField">
+      <textarea 
+                placeholder="Tell us what's up here!" 
+                name="body"
+             class="contactTextField"
+                v-model="content">
       </textarea>
     </div>
-    <button id="contactButton" class="apply-link">Send!</button>
+    <button id="contactButton" class="apply-link" @click="submitTicket()">
+      Send!
+    </button>
   </div>
 </template>
+
+
+<script>
+
+export default {
+  name: 'Main',
+  data() {
+    return {
+      subject: '',
+      content: '',
+      email: '',
+      name: '', 
+    };
+  },
+  methods: {
+    submitTicket() {
+      this.$parent.wrapper.ticketManager.submitTicket(this.subject, 
+                                                      this.content, 
+                                                      this.email, 
+                                                      this.name)
+        .then((data) => {
+          // TODO: Show ticket created success.
+          console.log(data);
+        })
+        .catch((err) => {
+          // TODO: Show ticket creation error.
+          throw err;
+        });
+    }
+  }
+};
+</script>
 
 <style scoped>
 
@@ -92,14 +138,3 @@
 
 </style>
 
-<script>
-
-
-export default {
-  name: 'Main',
-  data() {
-    return {
-    };
-  },
-};
-</script>

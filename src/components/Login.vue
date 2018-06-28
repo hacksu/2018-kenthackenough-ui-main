@@ -9,7 +9,7 @@
            class="text-input"
            type="text" 
            placeholder="you@website.com"
-           v-model="$parent.user.email"
+           v-model="email"
            />
     <br>
       
@@ -17,11 +17,12 @@
            class="text-input" 
            type="password" 
            placeholder="Your password here!!"
+           v-model="password"
            />
     <br>
     <br>
       
-    <button id="login-button" >
+    <button id="login-button" @click="login()">
       Log in!
     </button>
 
@@ -102,7 +103,25 @@ export default {
   name: 'Login',
   data() {
     return {
+      email: '',
+      password: ''
     };
   },
+  methods: {
+    login() {
+    // Verify that both 
+      console.log(this.email)
+      console.log(this.password)
+      this.$parent.wrapper.userManager.login(this.email, this.password)
+      .then((data) => {
+        // TODO: Sign up success.
+        console.log(data);
+      })
+      .catch((err) => {
+        // TODO: Sign up Failed.
+        throw err;
+      });
+    }
+  }
 };
 </script>

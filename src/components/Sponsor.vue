@@ -148,6 +148,7 @@ export default {
 }
   
   #sponsors {
+    color: var(--white);
     padding: 200px;
     padding-top: 50px;
   }

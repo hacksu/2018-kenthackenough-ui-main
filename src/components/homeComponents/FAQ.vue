@@ -42,12 +42,12 @@ export default {
         {
           id: 2,
           question: 'Sounds cool, but how much does it cost?',
-          answer: '$0.00!!<br><br>Thanks to the generosity of our sponsors, we\'re able to put on events like this for <i>free</i>.  We even pay for your meals for the weekend, and can reimburse you for travel costs.  Make sure to thank our sponsors - we couldn\'t do it without them!',
+          answer: '$0.00!<br><br>Thanks to the generosity of our sponsors, we\'re able to put on events like this for <i>free</i>.  We even pay for your meals for the weekend, and can reimburse you for travel costs.  Make sure to thank our sponsors - we couldn\'t do it without them!',
         },
         {
           id: 3,
           question: 'What should I bring?',
-          answer: 'Bring a laptop/something to hack on, a change of clothes, deoderant, a blanket/pillow, toiletries, deoderant, anything else you think you might use to complete your project, and deoderant.<br><br>We\'ll have an MLH hardware lab, which means we\'ll also have some cool hardware you can rent if you want!',
+          answer: 'Bring a laptop/something to hack on, a change of clothes, deoderant, a blanket/pillow, toiletries, deoderant, anything else you think you might use to complete your project, and deoderant.<br><br>We\'ll have an MLH hardware lab, which means we\'ll also have cool hardware available to rent!',
         },
         {
           id: 4,

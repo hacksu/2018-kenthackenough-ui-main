@@ -38,8 +38,8 @@
   }
   
   .icon {
-    height: 70px;
-    width: 70px;
+    height: 90px;
+    width: 90px;
     margin: 0px 10px 0px 10px;
   }
   .right {

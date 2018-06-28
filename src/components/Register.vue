@@ -9,7 +9,7 @@
            class="text-input"
            type="text" 
            placeholder="Email"
-           v-model="$parent.user.email"
+           v-model="email"
            />
     <br>
       <br>
@@ -17,17 +17,19 @@
            class="text-input" 
            type="password" 
            placeholder="Password"
+           v-model="password"
            />
     <br>
     <input id="login-password-confirm" 
            class="text-input" 
            type="password" 
            placeholder="Confirm password"
+           v-model="passwordConfirm"
            />
     <br>
     <br>
       
-    <button id="register-button" >
+    <button id="register-button" @click="register()">
       Register!
     </button>
 
@@ -40,6 +42,40 @@
     <div style="opacity: .6;text-decoration: underline;cursor: pointer;">Forgot your password? Click here!</div>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'Login',
+  data() {
+    return {
+      password: '',
+      passwordConfirm: '',
+      email: ''
+    };
+  },
+  methods: {
+    register() {
+      // Verify that both 
+      if (this.password === this.passwordConfirm) {
+        console.log(this.email)
+        console.log(this.password)
+        this.$parent.wrapper.userManager.createUser(this.email, this.password)
+          .then((data) => {
+            // TODO: Sign up success.
+            console.log(data);
+          })
+          .catch((err) => {
+            // TODO: Sign up Failed.
+            throw err;
+          });
+      } else {
+        // TODO: Passwords don't match.
+        alert("Passwords don't match!")
+      }
+    }
+  }
+};
+</script>
 
 <style scoped>
   #register-dialog {
@@ -119,12 +155,3 @@
   }
 </style>
 
-<script>
-export default {
-  name: 'Login',
-  data() {
-    return {
-    };
-  },
-};
-</script>
