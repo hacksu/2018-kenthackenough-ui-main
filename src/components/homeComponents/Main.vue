@@ -10,17 +10,23 @@
     
     
      <!-- This div is for once the application is launched, when the user is NOT logged in -->
-     <div id="applicationSite" v-if="1">
+     <div id="applicationSite" 
+          v-if="!$parent.$parent.user._id">
        <button class="main-btn" id="apply"
-               @click="$parent.$parent.dispRegister()">APPLY NOW!</button>
+               @click="$parent.$parent.dispRegister()">Register Now!</button>
        <br>
        <button class="main-btn" id="login"
                @click="$parent.$parent.dispLogin()">Login</button>
      </div>
      
-     <div id="applicationSiteLoggedIn" v-if="0">
-       <button class="mainBtn" id="apply"
-               @click="$parent.$parent.dispRegister()">Fill out your application!</button>
+     <div id="applicationSiteLoggedIn" 
+          v-else-if="!$parent.$parent.user.application.name">
+       <router-link 
+                    class="mainBtn" id="apply"
+                    tag="button"
+                    :to="{name: 'Apply'}">
+         Fill out your application!
+       </router-link>
      </div>
     </article>
     
@@ -254,8 +260,8 @@ export default {
     };
   },
   mounted() {
-    const houseEl = document.querySelector('#House');
-    console.log(houseEl);
+//    const houseEl = document.querySelector('#House');
+//    console.log(houseEl);
   }
 };
 </script>

@@ -30,7 +30,8 @@
           FAQ
         </p>
         
-        <p class="banner-link blue">
+        <p class="banner-link blue"
+           @click="scrollTo('/sponsor', 'body')">
           Sponsors
         </p>
         
@@ -93,10 +94,44 @@ export default {
       
       expandMenu: false,
       
-      user: {
+      user: this.userInitialState(),
+      
+      wrapper: new ApiWrapper(apiConfig)
+    };
+  },
+
+  mounted() {
+    // Checking if a user is saved as logged in
+    var user = this.wrapper.userManager.getLocalUser();
+    if (user.key){
+      console.log("You've been logged in from a previous session!")
+      this.user._id = user.key;
+      this.user.email = user.email;
+      this.user.role = user.role;
+    }
+  },
+
+  methods: {
+    dispLogin: function() {
+      // Normally we could do a one line function like this inside an @click attribute,
+      // but this makes it easier to access from it's children
+      this.expandMenu = false;
+      this.showLogin = !this.showLogin;
+    },
+    dispRegister: function() {
+      this.expandMenu = false;
+      this.showRegister = !this.showRegister;
+    },
+    switchLoginRegister: function() {
+      this.showRegister = !this.showRegister;
+      this.showLogin = !this.showLogin;
+    },
+    
+    userInitialState() {
+      return {
         _id: '',
         email: '',
-        password: '',
+//        password: '',
         key: '',
         role: '',
         application: {
@@ -119,35 +154,12 @@ export default {
           link: '',            // a github/linkedin link
           extra: '',
         },
-      },
-      
-      wrapper: new ApiWrapper(apiConfig)
-    };
-  },
-
-  mounted() {
-    var user = this.wrapper.userManager.getLocalUser();
-    console.log(user);
-  },
-
-  methods: {
-    dispLogin: function() {
-      // Normally we could do a one line function like this inside an @click attribute,
-      // but this makes it easier to access from it's children
-      this.expandMenu = false;
-      this.showLogin = !this.showLogin;
-    },
-    dispRegister: function() {
-      this.expandMenu = false;
-      this.showRegister = !this.showRegister;
-    },
-    switchLoginRegister: function() {
-      this.showRegister = !this.showRegister;
-      this.showLogin = !this.showLogin;
+      }
     },
     
     logout: function() {
-      alert('Not implemented');
+      console.warn("This resets the vue but still needs to log the user out of the api!")
+      this.user = this.userInitialState();
     },
 
     togMenu: function() {
