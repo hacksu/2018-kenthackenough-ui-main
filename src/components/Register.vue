@@ -1,5 +1,5 @@
 <template>
-  <div id="register-dialog" class="vines">
+  <div id="register-dialog" class="-vines">
     <span class="x-out-white" @click="$parent.dispRegister()">x</span>
     
     <h4 id="register-title">Register</h4>
@@ -95,7 +95,7 @@ export default {
     min-height: 200px;
     z-index: 1000;
     
-    padding: 0px;
+    padding: 30px;
     padding-bottom: 40px;
   }
   
