@@ -260,6 +260,16 @@ export default {
     
     --breakpoint: 900px;
   }
+  
+  .pink-text {
+    color: var(--pink);
+  }
+  .orange-text {
+    color: var(--orange);
+  }
+  .blue-text {
+    color: var(--blue);
+  }
 
   html, body {
     width: 100%;
