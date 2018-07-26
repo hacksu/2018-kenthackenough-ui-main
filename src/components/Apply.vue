@@ -4,72 +4,99 @@
       <h3>>KHE Application</h3>
     </div>
 
-    <div id="questionHolder">
-      <div class="question" v-for="(question, index) in appQuestions">
-        <p>{{index + 1}}. 
-          <span class="err"
-                v-if="question.required">*</span>
-          {{ question.label }}</p>
-        <input type="text" v-if="question.type == 'text'"
-             v-bind:placeholder="question.placeholder"
-             v-model="$parent.user.application[question.appField]">
+    <div id="questionHolder"
+          v-on:submit.prevent>
+      <div class="question" v-for="(question, index) in appQuestions"
+            >
         
-        <div v-if="question.type == 'phone'">
-          <input name="phone" 
-                 v-model="$parent.user.application.phone" 
-                 lazy 
-                 :class="{'input': true, 'is-danger': errors.has('name') }" 
-                 type="text" 
-                 v-bind:placeholder="question.placeholder">
-          <span class="err"
-                v-show="errors.has('phone') || $parent.user.application[question.appField].length > 11">Must be a valid phone number! (No dashes, etc)</span>
-          {{ $parent.user.application.phone | phone }}
-        </div>
+        <div id="displayedQuestion" v-if="currentQuestion == index">
         
-        <div class="optHolder" 
-             v-if="question.type == 'radio'">
-          <div class="opt" 
-               v-for="(option, optIndex) in question.options"
-               v-bind:class="{
-                                  selected: $parent.user.application[question.appField] == option[1],
-                                  selectable: $parent.user.application[question.appField] != option[1]
-                                         }"
-               @click="$parent.user.application[question.appField] = option[1]">
-            {{optIndex + 1}}. {{option[0]}}
+          <p>{{index + 1}}. 
+            <span class="err"
+                  v-if="question.required">*</span>
+            {{ question.label }}</p>
+          <input type="text" v-if="question.type == 'text'"
+                 class="question"
+                 @keyup.enter="next()"
+               v-bind:placeholder="question.placeholder"
+               v-model="$parent.user.application[question.appField]">
+        
+          <div v-if="question.type == 'phone'">
+            <input name="phone" 
+                   class="question"
+                   v-model="$parent.user.application.phone" 
+                   lazy 
+                   :class="{'input': true, 'is-danger': errors.has('name') }" 
+                   type="text" 
+                   @keyup.enter="next()"
+                   v-bind:placeholder="question.placeholder">
+            <span class="err"
+                  v-show="errors.has('phone') || $parent.user.application[question.appField].length > 11">Must be a valid phone number! (No dashes, etc)</span>
+            {{ $parent.user.application.phone | phone }}
           </div>
-          <input class="stringOpt" 
-                 v-if="question.stringInputLabel != undefined"
-                 type="text" 
-                 v-bind:placeholder="question.stringInputLabel">
-        </div>
-        
-        <div class="optHolder" 
-             v-if="question.type == 'bool'">
-          <div class="opt"
-               v-bind:class="{
-                                  selected: $parent.user.application[question.appField] == true,
-                                  selectable: $parent.user.application[question.appField] == false
-                                         }"
-               @click="$parent.user.application[question.appField] = true">
-            1. Yes!
+          
+          <div class="optHolder" 
+               v-if="question.type == 'radio'">
+            <input class="hidden question" 
+                   v-model="radioInput"
+                   @keyup.enter="next()"
+                   >
+            <div class="opt" 
+                 v-for="(option, optIndex) in question.options"
+                 v-bind:class="{
+                                    selected: $parent.user.application[question.appField] == option[1],
+                                    selectable: $parent.user.application[question.appField] != option[1]
+                                           }"
+                 @click="$parent.user.application[question.appField] = option[1]">
+              [{{optIndex + 1}}.] &nbsp; {{option[0]}}
+            </div>
+            <input class="stringOpt" 
+                   v-if="question.stringInputLabel != undefined"
+                   type="text" 
+                   @keyup.enter="next()"
+                   v-bind:placeholder="question.stringInputLabel">
           </div>
-          <div class="opt"
-               v-bind:class="{
-                                  selected: $parent.user.application[question.appField] == false,
-                                  selectable: $parent.user.application[question.appField] == true
-                                         }"
-               @click="$parent.user.application[question.appField] = false">
-            2. Nope!
+          
+          <div class="optHolder" 
+               v-if="question.type == 'bool'">
+            <div class="opt"
+                 v-bind:class="{
+                                    selected: $parent.user.application[question.appField] == true,
+                                    selectable: $parent.user.application[question.appField] == false
+                                           }"
+                 @click="$parent.user.application[question.appField] = true">
+              1. Yes!
+            </div>
+            <div class="opt"
+                 v-bind:class="{
+                                    selected: $parent.user.application[question.appField] == false,
+                                    selectable: $parent.user.application[question.appField] == true
+                                           }"
+                 @click="$parent.user.application[question.appField] = false">
+              2. Nope!
+            </div>
           </div>
-        </div>
-        
-        <div v-if="question.type == 'number'">
-          <input type="number" class="numInput"
-                 v-model="$parent.user.application[question.appField]"
-                 v-bind:placeholder="question.placeholder">
+          
+          <div v-if="question.type == 'number'">
+            <input type="number" class="numInput"
+                   v-model="$parent.user.application[question.appField]"
+                   v-bind:placeholder="question.placeholder">
+          </div>
         </div>
         
       </div>
+      <div class="nav-buttons">
+        <button @click="previous()" class="spooky-button"
+                v-if="currentQuestion != 0">
+          Previous
+        </button>
+        <button style="opacity: 0" v-else></button>
+        <button @click="next()" class="spooky-button">
+            
+          Next
+          <p>or press Enter</p>
+        </button>
+        </div>
     </div>
   </div>
 </template>
@@ -84,6 +111,12 @@ export default {
   name: 'apply',
   data() {
     return {
+      
+      currentQuestion: 0,
+      radioInput: -1,
+      radioChoice: -1,
+      
+      
       // All appQuestion objects should have:
       //    - type: one of: 'text', 'radio', 'phone', 'bool' 'number'
       //    - label (any string)
@@ -219,6 +252,45 @@ export default {
       ]
     };
   },
+  watch: {
+    radioInput(newVal, oldVal) {
+      var newChar = newVal[newVal.length - 1];
+      var question = this.appQuestions[this.currentQuestion];
+      // Checking if newChar is a number in the options
+      var number = Number(newChar);
+      if (number && question.options[number]) {
+        this.$parent.user.application[question.appField] = question.options[number][1];
+      }
+    }
+  },
+  methods: {
+    next() {
+      this.currentQuestion++;
+      console.log("Called");
+      this.focusElement();
+    },
+    previous() {
+      this.currentQuestion--;
+      console.log("CurrentQuestion: ", this.currentQuestion);
+      this.focusElement();
+    },
+    focusElement() {
+      setTimeout(() => {
+//        console.log("Called");
+        var input =
+          document.querySelector('.question input') ||
+          document.querySelector(".question-cell.is-selected textarea") ||
+          document.querySelector(".question-cell.is-selected select");
+//        console.log("Input: ", input);
+        if (input) {
+          input.focus();
+        }
+      }, 200);
+    },
+  },
+  mounted() {
+    this.focusElement()
+  }
 //  filters: {
 //    phone: function(phone) {
 //      return phone.replace(/[^0-9]/g, '')
@@ -231,7 +303,7 @@ export default {
 
 <style scoped>
   #application {
-    color: black;
+    color: white;
     display: flex;
     flex-direction: column;
   }
@@ -244,7 +316,8 @@ export default {
     min-height: 100px;
     width: 100%;
     padding-bottom: 20px;
-    box-shadow: 0px 0px 20px black;
+    background: var(--orange);
+    box-shadow: 0px 10px 10px black;
     z-index: 99;
   }
   #questionHolder {
@@ -268,11 +341,32 @@ export default {
     outline: none;
   }
   input:focus {
+    opacity: 1;
     border-bottom: solid gold 3px;
+  }
+  input[type=text] {
+    opacity: .5;
+  }
+  input[type=text]:focus {
+    opacity: 1;
   }
   .optHolder {
     display: flex;
     flex-flow: row wrap;
+  }
+  
+  .nav-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+/*  Used to facilitate the option chosen in the radio questions*/
+  .hidden {
+    max-height: 2px;
+    opacity: 0;
+  }
+  .hidden:focus {
+    opacity: 0;
   }
   
   .opt {
@@ -280,6 +374,7 @@ export default {
     padding: 5px 10px 5px 10px;
     border: solid gray 1px;
     width: 40%;
+    color: black;
     min-width: 200px;
     margin-right: 3%;
     border-radius: 5px;
@@ -295,6 +390,7 @@ export default {
   }
   .selected {
     filter: brightness(80%);
+    border: solid 2px var(--orange);
   }
   .stringOpt {
     width: 42%;

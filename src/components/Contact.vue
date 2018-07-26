@@ -37,7 +37,13 @@
                 v-model="content">
       </textarea>
     </div>
-    <button id="contactButton" class="apply-link" @click="submitTicket()">
+    <button id="contactButton" class="apply-link disabled"
+            v-if="!subject || !name || !email || !content"
+            style="opacity: .5;">
+      Send!
+    </button>
+    <button id="contactButton" class="apply-link" @click="submitTicket()"
+            v-else>
       Send!
     </button>
   </div>
@@ -128,12 +134,15 @@ export default {
     transition: all 0.5s;
   }
 
-  #contactButton:hover {
-  cursor: pointer;
-  position: relative;
-  background-color: var(--orange);
-  color: var(--bg-black);
-  transition: 0.5s;
+  #contactButton:hover:not(.disabled) {
+    cursor: pointer;
+    position: relative;
+    background-color: var(--orange);
+    color: var(--bg-black);
+    transition: 0.5s;
+  }
+  .disabled {
+    outline: none;
   }
 
 </style>

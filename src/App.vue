@@ -81,6 +81,7 @@ import register from './components/Register';
 
 export default {
   name: 'app',
+    
   components: {
     login,
     register,
@@ -158,7 +159,11 @@ export default {
     },
     
     logout: function() {
-      console.warn("This resets the vue but still needs to log the user out of the api!")
+      this.wrapper.userManager.logout().then(() => {
+        console.log("Logged out!");
+      }).catch((err) => {
+        console.error("Error logging out: ", err);
+      })
       this.user = this.userInitialState();
     },
 
@@ -200,6 +205,7 @@ export default {
   }
   
   #banner {
+/*    position: fixed;*/
     display: flex;
     justify-content: space-between;
     color: white;
@@ -274,6 +280,33 @@ export default {
       font-size: 16px;
     }
   }
+  .spooky-button {
+    
+    display: inline-block;
+    border: 2px solid var(--orange);
+    color: var(--white);
+    background-color: Transparent;
+    padding: 1rem 1rem;
+    z-index: 1;
+    margin-top: 10px;
+    background: var(--bg-black);
+    font-size: 20px;
+    
+    transition: all 0.5s;
+    
+  }
+  .spooky-button:hover {
+    cursor: pointer;
+    position: relative;
+    background-color: var(--orange);
+    color: var(--bg-black); 
+    transition: 0.5s;
+  }
+  .spooky-button p {
+      margin: 0px;
+      opacity: .5;
+      font-size: 10px;
+    }
   
 </style>
 
