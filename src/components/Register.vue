@@ -1,6 +1,6 @@
 <template>
   <div id="register-dialog" class="-vines">
-    <span class="x-out-white" @click="$parent.dispRegister()">x</span>
+    <span class="x-out-white" @click="$parent.dispRegister()">X</span>
     
     <h4 id="register-title">Register</h4>
     <h6 id="register-subtitle">We've been waiting for you!</h6>
@@ -12,7 +12,7 @@
            v-model="email"
            />
     <br>
-      <br>
+
     <input id="login-password" 
            class="text-input" 
            type="password" 
@@ -32,6 +32,8 @@
     <button id="register-button" @click="register()">
       Register!
     </button>
+    <br>
+    <br>
 
     <span id="register-create-account" class="buttonInput"
             @click="$parent.switchLoginRegister()">
@@ -39,7 +41,7 @@
     </span>
     <br>
     <br>
-    <div style="opacity: .6;text-decoration: underline;cursor: pointer;">Forgot your password? Click here!</div>
+    <div style="cursor: pointer;">Forgot your password? Click here!</div>
   </div>
 </template>
 
@@ -80,10 +82,10 @@ export default {
 <style scoped>
   #register-dialog {
     position: fixed;
-    background-color: #111;
-/*    border: white 5px solid;*/
-    color: var(--orange);
-    text-align: left;
+    background-color: var(--bg-black);
+    border: var(--dark-orange) 5px solid;
+    color: white;
+    text-align: center;
     
     border-radius: 10px;
     left: 50%;
@@ -91,7 +93,7 @@ export default {
     transform: translateX(-50%);
     right: auto 0;
     min-width: 300px;
-    width: 50%;
+    width: 40%;
     min-height: 200px;
     z-index: 1000;
     
@@ -111,7 +113,7 @@ export default {
   
   #register-title {
     font-size: 60px;
-    color: var(--orange);
+    color: white;
     padding: 0px;
     margin-top: 0px;
     margin-bottom: 10px;
@@ -149,8 +151,8 @@ export default {
     width: 50%;
     padding: 10px 0px 10px 0px;
     min-width: 120px;
-    background: var(--orange);
-    border: 1px solid var(--orange);
+    background: var(--dark-orange);
+    border: 1px solid var(--dark-orange);
     color: black;
   }
 </style>

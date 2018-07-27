@@ -1,6 +1,6 @@
 <template>
   <div id="login-dialog">
-    <span class="x-out-white" @click="$parent.dispLogin">x</span>
+    <span class="x-out-white" @click="$parent.dispLogin">X</span>
     
     <h4 id="login-title">Log in</h4>
     <h6 id="login-subtitle">...if you dare!!!</h6>
@@ -25,6 +25,8 @@
     <button id="login-button" @click="login()">
       Log in!
     </button>
+    <br>
+    <br>
 
     <span id="login-create-account"
             @click="$parent.switchLoginRegister()">
@@ -32,17 +34,17 @@
     </span>
     <br>
     <br>
-    <div id="forgot-pass-button">Forgot your password? No problem!</div>
+    <div id="forgot-pass-button">Forgot your password? Click here!</div>
   </div>
 </template>
 
 <style scoped>
   #login-dialog {
     position: fixed;
-    background-color: black;
-    border: white 5px solid;
-    color: var(--orange);
-    text-align: left;
+    background-color: var(--bg-black);
+    border: var(--dark-orange) 5px solid;
+    color: white;
+    text-align: center;
     
     border-radius: 10px;
     left: 50%;
@@ -50,17 +52,17 @@
     transform: translateX(-50%);
     right: auto 0;
     min-width: 300px;
-    width: 50%;
+    width: 40%;
     min-height: 200px;
     z-index: 1000;
     
     padding: 30px;
-    padding-bottom: 100px;
+    padding-bottom: 86px;
   }
   
   #login-title {
     font-size: 60px;
-    color: var(--orange);
+    color: white;
     padding: 0px;
     margin-top: 0px;
     margin-bottom: 10px;
@@ -78,17 +80,21 @@
     width: 50%;
     padding: 10px 0px 10px 0px;
     min-width: 120px;
-    background: var(--orange);
-    border: 1px solid var(--orange);
+    background: var(--dark-orange);
+    border: 1px solid var(--dark-orange);
     color: black;
   }
   
   #login-create-account {
+    cursor: pointer;
     width: 150px;
+    padding-right: 20px;
+    padding-left: 20px;
     border-top-right-radius: 10% 50%;
     border-bottom-right-radius: 10% 50%;
   }
   #forgot-pass-button {
+    cursor: pointer;
     padding-right: 20px;
     padding-left: 20px;
     border-bottom-left-radius: 10% 50%;
