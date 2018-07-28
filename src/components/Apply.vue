@@ -91,7 +91,10 @@
           Previous
         </button>
         <button style="opacity: 0" v-else></button>
-        <button @click="next()" class="spooky-button">
+        <button @click="next()" class="spooky-button"
+                :class="{
+                        disabled: !valid(currentQuestion)
+                        }">
             
           Next
           <p>or press Enter</p>
@@ -264,10 +267,31 @@ export default {
     }
   },
   methods: {
+    valid(q) {
+      var app = this.$parent.user.application;
+      switch(q) {
+        case 0:
+          return (app.name.length > 2);
+          break;
+        case 1:
+          return (app.school.length > 3);
+          break;
+        case 2:
+          return (app.phone.length > 9);
+          break;
+        case 3: 
+          return (app.shirt)
+        default:
+          return true;
+      }
+    },
+    
     next() {
-      this.currentQuestion++;
-      console.log("Called");
-      this.focusElement();
+      if (this.valid(this.currentQuestion)) {
+        this.currentQuestion++;
+        console.log("Called");
+        this.focusElement();
+      }
     },
     previous() {
       this.currentQuestion--;
@@ -288,6 +312,7 @@ export default {
       }, 200);
     },
   },
+  
   mounted() {
     this.focusElement()
   }
@@ -409,6 +434,10 @@ export default {
   .numInput {
     width: 100px;
     
+  }
+  
+  .disabled {
+    opacity: .5;
   }
 
 </style>
