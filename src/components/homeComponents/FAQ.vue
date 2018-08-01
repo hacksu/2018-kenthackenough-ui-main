@@ -2,20 +2,19 @@
   <div id="faq" class="widget">
     <h2 id="faqTitle">FAQ</h2>
     
-<!--    Outputs faq objects dynamically, as defined by the 'faqs' object in the data.-->
+    <!--Outputs faq objects dynamically, as defined by the 'faqs' object in the data.-->
     <div class="faqModule" v-for="faq in faqs">
       <div class="question" @click="expandFAQ(faq.id)">
-        <span v-if="expanded != faq.id">▶</span>
-        <span v-if="expanded == faq.id">▼</span>
+        <span v-if="expanded != faq.id">▶ &nbsp;</span>
+        <span v-if="expanded == faq.id">▼ &nbsp;</span>
         <span class="qText">{{ faq.question }}</span>
       </div>
       <transition name="wipe">
         <div class="answer" v-html="faq.answer" v-if="expanded == faq.id"></div>
       </transition>
     </div>
-    <br><br>
-    <p style="text-align:center;">
-      Still have questions?  
+    <p class="faqModule">
+      Still have questions? 
       <router-link to="contact" id="contactLink">Let us know!</router-link>
     </p>
     
