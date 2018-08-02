@@ -31,6 +31,7 @@
         </p>
         
         <p class="banner-link blue"
+           v-if="false"
            @click="scrollTo('/sponsor', 'body')">
           Sponsors
         </p>
@@ -38,7 +39,7 @@
         <p class="banner-link yellow"
            @click="navTo('/contact')">Contact</p>
         
-        <p class="banner-link pink"
+        <p class="banner-link blue"
            @click="scrollTo('/', '#map')">Map</p>
         
         <p class="banner-link green" @click="dispRegister()"
@@ -47,7 +48,7 @@
         </p>
         
         <p class="banner-link blue" @click='logout()'
-           v-if="user._id != ''">
+           v-if="user._id != '' && false">
           Log out
         </p>
         
@@ -159,11 +160,11 @@ export default {
     },
     
     logout: function() {
-      this.wrapper.userManager.logout().then(() => {
-        console.log("Logged out!");
-      }).catch((err) => {
-        console.error("Error logging out: ", err);
-      })
+//      this.wrapper.userManager.logout().then(() => {
+//        console.log("Logged out!");
+//      }).catch((err) => {
+//        console.error("Error logging out: ", err);
+//      })
       this.user = this.userInitialState();
     },
 

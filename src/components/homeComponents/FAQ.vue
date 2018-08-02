@@ -13,6 +13,7 @@
         <div class="answer" v-html="faq.answer" v-if="expanded == faq.id"></div>
       </transition>
     </div>
+    <br>
     <p class="faqModule">
       Still have questions? 
       <router-link to="contact" id="contactLink">Let us know!</router-link>
@@ -108,6 +109,7 @@ export default {
     padding-top: 10px;
     overflow: hidden;
     max-height: 300px;
+    padding-bottom: 50px;
   }
   
   #contactLink {
