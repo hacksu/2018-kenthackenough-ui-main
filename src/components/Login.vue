@@ -120,8 +120,13 @@ export default {
       console.log(this.password)
       this.$parent.wrapper.userManager.login(this.email, this.password)
       .then((data) => {
+        
         // TODO: Sign up success.
-        console.log(data);
+        console.log('Data: ', data);
+        this.$parent.user._id = data.key;
+        this.$parent.user.email = data.email;
+        this.$parent.user.role = data.role;
+        this.$parent.showLogin = false;
       })
       .catch((err) => {
         // TODO: Sign up Failed.

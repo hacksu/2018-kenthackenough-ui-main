@@ -11,7 +11,7 @@
     
      <!-- This div is for once the application is launched, when the user is NOT logged in -->
      <div id="applicationSite" 
-          v-if="false && !$parent.$parent.user._id">
+          v-if="!$parent.$parent.user._id">
        <button class="main-btn" id="apply"
                @click="$parent.$parent.dispRegister()">Register Now!</button>
        <br>
@@ -20,7 +20,7 @@
      </div>
      
      <div id="applicationSiteLoggedIn" 
-          v-else-if="false && !$parent.$parent.user.application.name">
+          v-else-if="!$parent.$parent.user.application.name">
        <router-link 
                     class="mainBtn" id="apply"
                     tag="button"

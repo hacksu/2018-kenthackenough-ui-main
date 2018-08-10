@@ -22,21 +22,21 @@
                v-model="$parent.user.application[question.appField]">
         
           <div v-if="question.type == 'phone'">
-            <input name="phone" 
-                   class="question"
-                   v-model="$parent.user.application.phone" 
-                   lazy 
-                   :class="{'input': true, 'is-danger': errors.has('name') }" 
-                   type="text" 
-                   @keyup.enter="next()"
-                   v-bind:placeholder="question.placeholder">
-            <span class="err"
-                  v-show="errors.has('phone') || $parent.user.application[question.appField].length > 11">Must be a valid phone number! (No dashes, etc)</span>
-            {{ $parent.user.application.phone | phone }}
+            <vue-tel-input v-model="$parent.user.application.phone" 
+                  @onInput="onInput"
+                  @keyup.enter="next()"
+                  class="front">
+                  </vue-tel-input>
+            
           </div>
           
           <div class="optHolder" 
                v-if="question.type == 'radio'">
+<!--            The following input is used to allow users to type their selection, 
+                instead of clicking on the buttons.
+                
+                You can find it's handler in the watched functions.
+-->
             <input class="hidden question" 
                    v-model="radioInput"
                    @keyup.enter="next()"
@@ -106,9 +106,12 @@
 
 <script>
 import Vue from 'vue';
-import phoneFilter from '../filters/phoneFilter';
+//import phoneFilter from '../filters/phoneFilter';
+import VueTelInput from 'vue-tel-input';
+import 'vue-tel-input/dist/vue-tel-input.css';
 
-Vue.filter('phone', phoneFilter);
+  
+Vue.use(VueTelInput);
 
 export default {
   name: 'apply',
@@ -116,9 +119,17 @@ export default {
     return {
       
       currentQuestion: 0,
-      radioInput: -1,
-      radioChoice: -1,
+      radioInput: '', // Stores the user's input as a full string
+      radioChoice: -1, // The calculated choice. See radioInput's watcher for more info
       
+      boolInput: '',
+      boolChoice: -1,
+      
+      phone: {
+        number: '',
+        isValid: false,
+        country: undefined,
+      },
       
       // All appQuestion objects should have:
       //    - type: one of: 'text', 'radio', 'phone', 'bool' 'number'
@@ -256,13 +267,21 @@ export default {
     };
   },
   watch: {
+    // This function takes the latest numeric input from the hidden input,
+    // & selects the corresponding radio value. 
     radioInput(newVal, oldVal) {
+      
+      // The hidden input holds a string, so first we grab the last character
+      // of that string: 
       var newChar = newVal[newVal.length - 1];
+      
+      // Next we grab the question from the question array: 
       var question = this.appQuestions[this.currentQuestion];
-      // Checking if newChar is a number in the options
+      
+      // Checking if newChar is a number in the options:
       var number = Number(newChar);
-      if (number && question.options[number]) {
-        this.$parent.user.application[question.appField] = question.options[number][1];
+      if (number && question.options[number - 1]) {
+        this.$parent.user.application[question.appField] = question.options[number - 1][1];
       }
     }
   },
@@ -277,7 +296,7 @@ export default {
           return (app.school.length > 3);
           break;
         case 2:
-          return (app.phone.length > 9);
+          return (this.phone.isValid);
           break;
         case 3: 
           return (app.shirt)
@@ -310,6 +329,13 @@ export default {
           input.focus();
         }
       }, 200);
+    },
+    // For phone number handling
+    onInput({ number, isValid, country }) {
+      console.log(number, isValid, country);
+      this.phone.number = number;
+      this.phone.isValid = isValid;
+      this.phone.country = country && country.name;
     },
   },
   
@@ -439,5 +465,13 @@ export default {
   .disabled {
     opacity: .5;
   }
+  
 
+</style>
+
+<style>
+.dropdown {
+  z-index: 1001 !important;
+  color: black;
+}
 </style>

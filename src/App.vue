@@ -31,7 +31,6 @@
         </p>
         
         <p class="banner-link blue"
-           v-if="false"
            @click="scrollTo('/sponsor', 'body')">
           Sponsors
         </p>
@@ -42,13 +41,13 @@
         <p class="banner-link blue"
            @click="scrollTo('/', '#map')">Map</p>
         
-        <p class="banner-link green" @click="dispRegister()"
+        <p class="banner-link pink" @click="dispRegister()"
            v-if="user._id == ''">
           Register/Login
         </p>
         
-        <p class="banner-link blue" @click='logout()'
-           v-if="user._id != '' && false">
+        <p class="banner-link pink" @click='logout()'
+           v-if="user._id != ''">
           Log out
         </p>
         
@@ -105,7 +104,7 @@ export default {
   mounted() {
     // Checking if a user is saved as logged in
     var user = this.wrapper.userManager.getLocalUser();
-    if (user.key){
+    if (user && user.key){
       console.log("You've been logged in from a previous session!")
       this.user._id = user.key;
       this.user.email = user.email;
@@ -160,7 +159,8 @@ export default {
     },
     
     logout: function() {
-//      this.wrapper.userManager.logout().then(() => {
+      this.wrapper.userManager.logout()
+//        .then(() => {
 //        console.log("Logged out!");
 //      }).catch((err) => {
 //        console.error("Error logging out: ", err);
