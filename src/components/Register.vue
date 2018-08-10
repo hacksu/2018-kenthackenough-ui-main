@@ -57,14 +57,17 @@ export default {
   },
   methods: {
     register() {
-      // Verify that both 
+      // Verify that both passwords match
       if (this.password === this.passwordConfirm) {
         console.log(this.email)
         console.log(this.password)
         this.$parent.wrapper.userManager.createUser(this.email, this.password)
           .then((data) => {
-            // TODO: Sign up success.
-            console.log(data);
+//            console.log(data);
+            this.$parent.user._id = data.key;
+            this.$parent.user.email = data.email;
+            this.$parent.user.role = data.role;
+            this.$parent.showRegister = false;
           })
           .catch((err) => {
             // TODO: Sign up Failed.

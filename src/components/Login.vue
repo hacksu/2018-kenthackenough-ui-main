@@ -121,8 +121,7 @@ export default {
       this.$parent.wrapper.userManager.login(this.email, this.password)
       .then((data) => {
         
-        // TODO: Sign up success.
-        console.log('Data: ', data);
+//        console.log('Data: ', data);
         this.$parent.user._id = data.key;
         this.$parent.user.email = data.email;
         this.$parent.user.role = data.role;
