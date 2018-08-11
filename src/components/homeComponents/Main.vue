@@ -28,6 +28,12 @@
          Fill out your application!
        </router-link>
      </div>
+      
+      <a href="https://sponsor.khe.io/" target="_blank"
+         class="orange-text"
+         v-if="!$parent.$parent.user._id">
+        Want to sponsor KHE?
+      </a>
     </article>
     
     <div id="main-background">
@@ -62,6 +68,11 @@
   background-color: var(--dark-grey);
 
 }
+  
+  a {
+    display: block;
+    margin-top: 20px;
+  }
 
 #logo {
   width: 75%;
