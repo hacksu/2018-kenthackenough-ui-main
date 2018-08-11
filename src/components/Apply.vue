@@ -59,6 +59,10 @@
           
           <div class="optHolder" 
                v-if="question.type == 'bool'">
+            <input class="hidden question" 
+                   v-model="boolInput"
+                   @keyup.enter="next()"
+                   >
             <div class="opt"
                  v-bind:class="{
                                     selected: $parent.user.application[question.appField] == true,
@@ -282,6 +286,20 @@ export default {
       var number = Number(newChar);
       if (number && question.options[number - 1]) {
         this.$parent.user.application[question.appField] = question.options[number - 1][1];
+      }
+    },
+    boolInput(newVal, oldVal) {
+      // The hidden input holds a string, so first we grab the last character
+      // of that string: 
+      var newChar = newVal[newVal.length - 1];
+      
+      // Next we grab the question from the question array: 
+      var question = this.appQuestions[this.currentQuestion];
+      
+      if (newChar === '1') {
+        this.$parent.user.application[question.appField] = true;
+      } else if (newChar === '2') {
+        this.$parent.user.application[question.appField] = false;
       }
     }
   },
