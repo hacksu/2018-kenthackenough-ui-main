@@ -49,8 +49,7 @@
   </main>
 </template>
 
-<style scoped> 
-
+<style scoped>
 /* We're using a mobile first approach. All of the styles above the breakpoint are for mobile */
 
 #main-container {
@@ -66,13 +65,12 @@
   min-height: 100vh;
 
   background-color: var(--dark-grey);
-
 }
-  
-  a {
-    display: block;
-    margin-top: 20px;
-  }
+
+a {
+  display: block;
+  margin-top: 20px;
+}
 
 #logo {
   width: 75%;
@@ -95,24 +93,29 @@
   margin-top: 1rem;
 }
 
-#title-info h2, #title-info h3 {
-  font-family: 'Merriweather', serif;
+#title-info h2,
+#title-info h3 {
+  font-family: "Merriweather", serif;
   font-weight: 300;
   color: var(--white);
 }
 
-#applicationSite, #applicationSiteLoggedIn {
+#applicationSite,
+#applicationSiteLoggedIn {
   grid-area: 3 / 2;
-  margin-left: 15rem;
-  margin-right: 15rem;
   text-align: center;
+  padding-left: 1em;
+  padding-right: 1em;
+  max-width: 26rem;
+  margin: 0 auto;
   z-index: 1;
 }
 
-#apply, #login {
+#apply,
+#login {
   width: 100%;
   position: relative;
-  
+
   display: inline-block;
   border: 2px solid var(--orange);
   color: var(--white);
@@ -126,11 +129,12 @@
   transition: all 0.5s;
 }
 
-#apply:hover, #login:hover {
+#apply:hover,
+#login:hover {
   cursor: pointer;
   position: relative;
   background-color: var(--orange);
-  color: var(--bg-black); 
+  color: var(--bg-black);
   transition: 0.5s;
 }
 
@@ -155,16 +159,14 @@
 .yellow-text {
   color: var(--yellow);
 }
-  
-  .mainBtn {
-    
-  }
-  
+
+.mainBtn {
+}
+
 /*  BREAKPOINT:*/
 
 @media screen and (min-width: 768px) {
   #main-container {
-
   }
 
   #logo {
@@ -252,7 +254,6 @@
     transform: translateX(-15%);
   }
 }
-
 </style>
 
 
@@ -261,18 +262,17 @@
 // import {TweenMax, Power0, Power1, Back, TimelineLite} from "gsap";
 // import { TweenMax, TimelineLite } from 'gsap';
 
-import Hill from './Hill';
+import Hill from "./Hill";
 
 export default {
-  name: 'Main',
+  name: "Main",
   components: { Hill },
   data() {
-    return {
-    };
+    return {};
   },
   mounted() {
-//    const houseEl = document.querySelector('#House');
-//    console.log(houseEl);
+    //    const houseEl = document.querySelector('#House');
+    //    console.log(houseEl);
   }
 };
 </script>
