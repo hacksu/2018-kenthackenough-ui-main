@@ -24,62 +24,56 @@
 </template>
 
 <style scoped>
-  
-  
-  #infoTitle {
-    font-size: 50px;
-    text-align: center;
-  }
-  
-  .info-container {
-    width: 100%;
-    max-width: 1000px;
-    margin-left: 50%;
-    transform: translateX(-50%);
-  }
-  
-  .icon {
-    height: 90px;
-    width: 90px;
-    margin: 0px 10px 0px 10px;
-  }
-  .right {
-    justify-content: flex-end;
-  }
+#infoTitle {
+  font-size: 50px;
+  text-align: center;
+}
+
+.icon {
+  height: 90px;
+  width: 90px;
+  margin: 0px 10px 0px 10px;
+}
+.right {
+  justify-content: flex-end;
+}
+h5 {
+  display: flex;
+  align-items: center;
+  font-size: 1.2em;
+  margin-bottom: 50px;
+}
+.info-content {
+  margin-left: 50px;
+}
+
+@media only screen and (max-width: 850px) {
   h5 {
-    display: flex;
-    align-items: center;
-    font-size: 1.2em;
-    margin-bottom: 50px;
-    
+    font-size: 0.9em;
   }
-  .info-content {
-      margin-left: 50px;
-    }
-  
-  @media only screen and (max-width: 850px) {
-    h5 {
-      font-size: .9em;
-    }
-  }
-  
-  #info {
-    background-color: var(--darker-green);
-    background-image: repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.02) 35px, rgba(255,255,255,.02) 70px);    font-size: 20px;
-    line-height: 30px;
-    color: white;
-    min-height: 80vh;
-  }
+}
+
+#info {
+  background-color: var(--darker-green);
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 35px,
+    rgba(255, 255, 255, 0.02) 35px,
+    rgba(255, 255, 255, 0.02) 70px
+  );
+  font-size: 20px;
+  line-height: 30px;
+  color: white;
+  min-height: 80vh;
+}
 </style>
 
 <script>
-
-
 export default {
-  name: 'Main',
+  name: "Main",
   data() {
-    return {
-    };
-  },
+    return {};
+  }
 };
 </script>
