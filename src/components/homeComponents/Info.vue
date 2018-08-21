@@ -51,6 +51,10 @@ h5 {
   h5 {
     font-size: 0.9em;
   }
+  .icon {
+    height: 45px;
+    width: 45px;
+  }
 }
 
 #info {
