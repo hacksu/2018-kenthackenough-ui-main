@@ -1,5 +1,5 @@
 <template>
-  <div id="application">
+  <div id="application" ref="application" @keyup.enter="next()">
     <div id="appHeader">
       <h3>>KHE Application</h3>
     </div>
@@ -85,6 +85,24 @@
             <input type="number" class="numInput"
                    v-model="$parent.user.application[question.appField]"
                    v-bind:placeholder="question.placeholder">
+            <p v-if="question.appField == 'age' && 
+                     $parent.user.application[question.appField] != '' &&
+                     $parent.user.application[question.appField] > 12 &&
+                     $parent.user.application[question.appField] < 18"
+               style="font-size: 14px;">
+              As a minor, make sure you bring a waiver, signed by a parent or gaurdian.
+            </p>
+          </div>
+          
+          <div v-if="question.type == 'upload'">
+            <input class="hidden question" 
+                   v-model="boolInput"
+                   @keyup.enter="next()"
+                   >
+            <vue-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions"
+                          v-on:error="uploadError(errorMessage)"
+                          v-on:success="uploadSuccess()"></vue-dropzone>
+
           </div>
         </div>
         
@@ -113,12 +131,23 @@ import Vue from 'vue';
 //import phoneFilter from '../filters/phoneFilter';
 import VueTelInput from 'vue-tel-input';
 import 'vue-tel-input/dist/vue-tel-input.css';
+  
+import vue2Dropzone from 'vue2-dropzone';
+import 'vue2-dropzone/dist/vue2Dropzone.min.css';
+  
+import apiConfig from "@/config/config";
+
 
   
 Vue.use(VueTelInput);
 
 export default {
   name: 'apply',
+  
+  components: {
+    vueDropzone: vue2Dropzone
+  },
+  
   data() {
     return {
       
@@ -133,6 +162,14 @@ export default {
         number: '',
         isValid: false,
         country: undefined,
+      },
+      
+      dropzoneOptions: {
+        url: `${apiConfig.api_base}/users/application/resume`,
+        acceptedFiles: 'application/docx,application/pdf,text/plain', 
+        thumbnailWidth: 150,
+        maxFilesize: 0.5,
+        headers: { "My-Awesome-Header": "header value" }
       },
       
       // All appQuestion objects should have:
@@ -185,13 +222,17 @@ export default {
             ['X-Large', 'XL'],
             ['XX-Large', 'XXL'],
             ['XXX-Large', 'XXXL']
-          ]
+          ],
+          
+          required: true
         },
         {
           appField: 'first',
           
           type: 'bool',
-          label: 'Is this your first hackathon?'
+          label: 'Is this your first hackathon?',
+          
+          required: true
         },
         {
           appField: 'dietary',
@@ -223,14 +264,17 @@ export default {
             ['Grad Student', 'graduate'],
           ],
           // stringInputLabel is optional
-          stringInputLabel: 'Other (describe here)'
+          stringInputLabel: 'Other (describe here)',
+          required: true
         },
         {
           appField: 'age',
           
           type: 'number',
           placeholder: 'Age',
-          label: 'How old are you?'
+          label: 'How old are you?',
+          
+          required: true,
         },
         {
           appField: 'gender',
@@ -241,7 +285,8 @@ export default {
           options: [
             ['Male', 'male'],
             ['Female', 'female'],
-            ['Prefer Not to Say', 'preferNotToSay']
+            ['Prefer Not to Say', 'preferNotToSay'],
+            ['Other', 'other']
           ],
           // stringInputLabel is optional
           stringInputLabel: 'Other'
@@ -265,8 +310,10 @@ export default {
         {
           appField: 'resume',
           type: 'upload',
-          label: 'Upload your resume:'
-        }
+          label: 'Upload your resume:',
+          
+          required: false
+        },
       ]
     };
   },
@@ -307,17 +354,37 @@ export default {
     valid(q) {
       var app = this.$parent.user.application;
       switch(q) {
-        case 0:
+        case 0: // Name
           return (app.name.length > 2);
           break;
-        case 1:
+        case 1: // School
           return (app.school.length > 3);
           break;
-        case 2:
+        case 2: // Phone
           return (this.phone.isValid);
           break;
-        case 3: 
-          return (app.shirt)
+        case 3: // shirt
+          return (app.shirt);
+        case 4: // first hackathon? Just needs to be yes/no
+          return app.first != null;
+          break;
+        case 5: // Dietary restrictions? Can be skipped
+          return true
+          break;
+        case 6: // Year of school
+          return app.year;
+          break;
+        case 7: // Age
+          return app.age > 12;
+          break;
+        case 8: // gender
+          return true;
+          break;
+        case 9: // Major
+          return app.major;
+          break;
+        case 10: // Travel
+          
         default:
           return true;
       }
@@ -326,13 +393,11 @@ export default {
     next() {
       if (this.valid(this.currentQuestion)) {
         this.currentQuestion++;
-        console.log("Called");
         this.focusElement();
       }
     },
     previous() {
       this.currentQuestion--;
-      console.log("CurrentQuestion: ", this.currentQuestion);
       this.focusElement();
     },
     focusElement() {
@@ -350,15 +415,22 @@ export default {
     },
     // For phone number handling
     onInput({ number, isValid, country }) {
-      console.log(number, isValid, country);
+//      console.log(number, isValid, country);
       this.phone.number = number;
       this.phone.isValid = isValid;
       this.phone.country = country && country.name;
     },
+    
+    uploadSuccess() {
+      console.log("Success!");
+    },
+    uploadError(errorMessage) {
+      console.error("Error uploading resume! ", errorMessage);
+    }
   },
   
   mounted() {
-    this.focusElement()
+    this.focusElement();
   }
 //  filters: {
 //    phone: function(phone) {

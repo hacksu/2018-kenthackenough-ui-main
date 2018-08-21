@@ -135,23 +135,23 @@ export default {
         key: "",
         role: "",
         application: {
-          name: "", // full name
-          school: "", // name of school
-          phone: "", // phone number
-          shirt: "", // t-shirt size
-          demographic: false, // allowed to use demographic info?
-          first: null, // is this your first hackathon?
-          dietary: [], // food restrictions seperated by |
+          name: "", // full name                                      !
+          school: "", // name of school                               !
+          phone: "", // phone number                                  !
+          shirt: "", // t-shirt size                                  !
+          demographic: false, // allowed to use demographic info?       ?
+          first: null, // is this your first hackathon?               !
+          dietary: [], // food restrictions seperated by |            !
           // Vegan, vegitarian, kosher, gluten free, allergy, other
-          year: "", // the year in school
-          age: "", // person's age
-          gender: "", // gender
-          major: "", // degree
-          conduct: false, // agree to MLH code of conduct?
-          travel: null, // need travel reimbursement?
-          waiver: false, // agreed to waiver?
-          resume: "", // the filename of their resume
-          link: "", // a github/linkedin link
+          year: "", // the year in school                             !
+          age: '', // person's age                                    !
+          gender: "", // gender                                       !
+          major: "", // degree                                        !
+          conduct: false, // agree to MLH code of conduct?              ?
+          travel: null, // need travel reimbursement?                 !
+          waiver: false, // agreed to waiver?                           ?
+          resume: "", // the filename of their resume                   ?
+          link: "", // a github/linkedin link                           ?
           extra: ""
         }
       };

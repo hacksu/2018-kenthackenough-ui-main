@@ -34,7 +34,10 @@
     </span>
     <br>
     <br>
-    <div id="forgot-pass-button">Forgot your password? Click here!</div>
+<!--    TODO: Let them recover their pass!-->
+    <div id="forgot-pass-button" v-if="false">
+      Forgot your password? Click here!
+    </div>
   </div>
 </template>
 

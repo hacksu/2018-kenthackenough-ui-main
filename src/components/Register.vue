@@ -41,7 +41,6 @@
     </span>
     <br>
     <br>
-    <div style="cursor: pointer;">Forgot your password? Click here!</div>
   </div>
 </template>
 
