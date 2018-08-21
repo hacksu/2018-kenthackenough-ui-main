@@ -1,51 +1,58 @@
 <template>
   <div id="contact" class="widget">
-    <h2 id="contactTitle">Contact us</h2>
-    <p>
-      If you have any questions, concerns, or problems, please do not hesitate to contact us. One of our organizers will get back to you as soon as humanly possible.
-    </p>
-    <div class="formField">
-      <span id="subjectTitle">Subject:</span>
-      <input type="text" 
-             placeholder="Team Formation" 
-             name="subject"
-             class="contactTextField"
-             v-model="subject">
+    <div v-if="!submitted">
+      <h2 id="contactTitle">Contact us</h2>
+      <p>
+        If you have any questions, concerns, or problems, please do not hesitate to contact us. One of our organizers will get back to you as soon as humanly possible.
+      </p>
+      <div class="formField">
+        <span id="subjectTitle">Subject:</span>
+        <input type="text" 
+               placeholder="Team Formation" 
+               name="subject"
+               class="contactTextField"
+               v-model="subject">
+      </div>
+      <div class="formField">
+        <span id="subjectTitle">Name:</span>
+        <input type="text" 
+               placeholder="John Doe" 
+               name="name"
+               class="contactTextField"
+               v-model="name">
+      </div>
+      <div class="formField">
+        <span id="subjectTitle">Email:</span>
+        <input type="text" 
+               placeholder="jdoe@example.com" 
+               name="email"
+               class="contactTextField"
+               v-model="email">
+      </div>
+      <div class="formField">
+        <span id="subjectTitle">Body:</span>
+        <textarea 
+                  placeholder="Tell us what's up here!" 
+                  name="body"
+               class="contactTextField"
+                  v-model="content">
+        </textarea>
+      </div>
+      <button id="contactButton" class="apply-link disabled"
+              v-if="!subject || !name || !email || !content"
+              style="opacity: .5;">
+        Send!
+      </button>
+      <button id="contactButton" class="apply-link" @click="submitTicket()"
+              v-else>
+        Send!
+      </button>
+      <p class="error" v-html="err"></p>
     </div>
-    <div class="formField">
-      <span id="subjectTitle">Name:</span>
-      <input type="text" 
-             placeholder="John Doe" 
-             name="name"
-             class="contactTextField"
-             v-model="name">
+    <div v-else>
+      <h2>Thanks!</h2>
+      <p>Your ticket is submitted. We'll look into it as soon as possible!</p>
     </div>
-    <div class="formField">
-      <span id="subjectTitle">Email:</span>
-      <input type="text" 
-             placeholder="jdoe@example.com" 
-             name="email"
-             class="contactTextField"
-             v-model="email">
-    </div>
-    <div class="formField">
-      <span id="subjectTitle">Body:</span>
-      <textarea 
-                placeholder="Tell us what's up here!" 
-                name="body"
-             class="contactTextField"
-                v-model="content">
-      </textarea>
-    </div>
-    <button id="contactButton" class="apply-link disabled"
-            v-if="!subject || !name || !email || !content"
-            style="opacity: .5;">
-      Send!
-    </button>
-    <button id="contactButton" class="apply-link" @click="submitTicket()"
-            v-else>
-      Send!
-    </button>
   </div>
 </template>
 
@@ -60,6 +67,9 @@ export default {
       content: '',
       email: '',
       name: '', 
+      
+      submitted: false,
+      err: ''
     };
   },
   methods: {
@@ -70,10 +80,12 @@ export default {
                                                       this.name)
         .then((data) => {
           // TODO: Show ticket created success.
+          this.submitted = true;
           console.log(data);
         })
         .catch((err) => {
           // TODO: Show ticket creation error.
+          this.err = 'There was an error sending your message! :( <br>Make sure you\'re connected to the internet, and the form is completely filled out.<br>If this persists, you can email us at hacksu@cs.kent.edu';
           throw err;
         });
     }
@@ -86,10 +98,16 @@ export default {
   #contact {
     background-color: var(--bg-color);
     padding: 2rem 6rem;
+    
     font-size: 20px;
     line-height: 30px;
     height: 100vh;
     color: white;
+  }
+  @media only screen and (max-width: 768px) {
+    #contact { 
+      padding: 1rem .5rem !important;
+    }
   }
 
   #contactTitle {
@@ -143,6 +161,10 @@ export default {
   }
   .disabled {
     outline: none;
+  }
+  
+  .error {
+    color: red;
   }
 
 </style>
