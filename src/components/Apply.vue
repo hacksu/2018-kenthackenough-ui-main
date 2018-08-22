@@ -99,8 +99,9 @@
                    v-model="boolInput"
                    @keyup.enter="next()"
                    >
-            <vue-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions"
+            <vue-dropzone ref="resumeUpload" id="dropzone" :options="dropzoneOptions"
                           v-on:error="uploadError(errorMessage)"
+                          name="resume"
                           v-on:success="uploadSuccess()"></vue-dropzone>
 
           </div>
@@ -168,8 +169,8 @@ export default {
         url: `${apiConfig.api_base}/users/application/resume`,
         acceptedFiles: 'application/docx,application/pdf,text/plain', 
         thumbnailWidth: 150,
-        maxFilesize: 0.5,
-        headers: { "My-Awesome-Header": "header value" }
+        paramName: 'resume',
+        success: this.uploadSuccess
       },
       
       // All appQuestion objects should have:
