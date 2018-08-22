@@ -8,30 +8,33 @@
       <h2 id="date">October 19-21st, 2018</h2>
       <h2 id="location">Kent State University Library</h2>
     
-    
-     <!-- This div is for once the application is launched, when the user is NOT logged in -->
-     <div id="applicationSite" 
+      <a id="mlh-trust-badge" href="https://mlh.io/seasons/na-2019/events?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2019-season&utm_content=red" target="_blank">
+        <img id="banner" src="../../assets/mlh-trust-badge-2019-red.svg" alt="Major League Hacking 2019 Hackathon Season">
+      </a>
+
+      <!-- This div is for once the application is launched, when the user is NOT logged in -->
+      <div id="applicationSite" 
           v-if="!$parent.$parent.user._id">
-       <button class="main-btn" id="apply"
-               @click="$parent.$parent.dispRegister()">Register Now!</button>
-       <br>
-       <button class="main-btn" id="login"
-               @click="$parent.$parent.dispLogin()">Login</button>
-     </div>
+        <button class="main-btn" id="apply"
+                @click="$parent.$parent.dispRegister()">Register Now!</button>
+        <br>
+        <button class="main-btn" id="login"
+                @click="$parent.$parent.dispLogin()">Login</button>
+      </div>
      
-     <div id="applicationSiteLoggedIn" 
+      <div id="applicationSiteLoggedIn" 
           v-else-if="!$parent.$parent.user.application.name">
-       <router-link 
+        <router-link 
                     class="mainBtn" id="apply"
                     tag="button"
                     :to="{name: 'Apply'}">
-         Fill out your application!
-       </router-link>
-     </div>
+          Fill out your application!
+        </router-link>
+      </div>
       
       <a href="https://sponsor.khe.io/" target="_blank"
-         class="orange-text"
-         v-if="!$parent.$parent.user._id">
+          class="orange-text"
+          v-if="!$parent.$parent.user._id">
         Want to sponsor KHE?
       </a>
     </article>
@@ -45,13 +48,11 @@
       <img id="cloud-3" src="../../assets/Cloud 3.svg">
     </div>
 
-  
   </main>
 </template>
 
 <style scoped>
 /* We're using a mobile first approach. All of the styles above the breakpoint are for mobile */
-
 #main-container {
   position: relative;
 
@@ -163,6 +164,21 @@ a {
 .mainBtn {
 }
 
+#mlh-trust-badge {
+  display: block; 
+  max-width: 100px; 
+  min-width: 60px; 
+  position: absolute; 
+  left: 5px;
+  top: -20px; 
+  width: 10%; 
+  z-index: 10000;
+}
+
+#banner {
+  width: 100%
+}
+
 /*  BREAKPOINT:*/
 
 @media screen and (min-width: 768px) {
@@ -175,6 +191,10 @@ a {
 
   #title-info {
     margin-top: 0rem;
+  }
+
+  #mlh-trust-badge {
+    left: 50px;
   }
 }
 
