@@ -24,6 +24,7 @@
           <div v-if="question.type == 'phone'">
             <vue-tel-input v-model="$parent.user.application.phone" 
                   @onInput="onInput"
+                           placeholder="5551239876"
                   @keyup.enter="next()"
                   class="front">
                   </vue-tel-input>
@@ -106,7 +107,7 @@
                      $parent.user.application[question.appField] > 12 &&
                      $parent.user.application[question.appField] < 18"
                style="font-size: 14px;">
-              As a minor, make sure you bring a waiver, signed by a parent or gaurdian.
+              As a minor, make sure you bring a <a href="https://khe.io/static/Minor_Waiver.pdf" target="_blank" class="orange-link">waiver</a>, signed by a parent or gaurdian.
             </p>
           </div>
           
