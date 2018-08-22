@@ -18,6 +18,7 @@
            type="password" 
            placeholder="Your password here!!"
            v-model="password"
+           @keyup.enter="login()"
            />
     <br>
     <br>

@@ -5,7 +5,8 @@
     </div>
 
     <div id="questionHolder"
-          v-on:submit.prevent>
+          v-on:submit.prevent
+         v-if="currentQuestion != appQuestions.length">
       <div class="question" v-for="(question, index) in appQuestions"
             >
         
@@ -150,6 +151,15 @@
       <div class="err">
         {{submissionErr}}
       </div>
+    </div>
+    <div v-else id="questionHolder">
+      <h1>Thanks!</h1>
+      <p>Your application was submitted! Nice!</p>
+      <p>We'll send you confirmation to your email soon. Get pumped!</p>
+      <router-link tag="button" class="spooky-button"
+                   to="/">
+        Back to Home!
+      </router-link>
     </div>
   </div>
 </template>
@@ -509,6 +519,8 @@ export default {
       this.$parent.wrapper.applicationManager.saveApplication(this.$parent.user.application)
       .then((data) => {
         console.log("Submitted app!")
+        vm.currentQuestion++;
+        vm.$parent.hasApp = true;
       })
       .catch((err) => {
         console.error(err.response.data.errors[0]);

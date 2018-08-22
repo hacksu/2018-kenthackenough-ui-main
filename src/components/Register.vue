@@ -25,6 +25,7 @@
            type="password" 
            placeholder="Confirm password"
            v-model="passwordConfirm"
+           @keyup.enter="register()"
            />
     <br>
     <br>
