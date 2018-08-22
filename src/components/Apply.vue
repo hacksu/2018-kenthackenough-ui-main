@@ -1,7 +1,7 @@
 <template>
   <div id="application" ref="application" @keyup.enter="next()">
     <div id="appHeader">
-      <h3>>KHE Application</h3>
+      <h3>KHE Application</h3>
     </div>
 
     <div id="questionHolder"
@@ -542,12 +542,21 @@ export default {
     text-align: left;
     padding-left: 15%;
     margin-top: 0px;
-    padding-top: 20px;
+    padding-top: 10px;
     left: 0px;
     min-height: 100px;
+    color: black;
+    font-size: 20px;
     width: 100%;
     padding-bottom: 20px;
-    background: var(--orange);
+/*    background: var(--orange);*/
+    background: repeating-linear-gradient(
+  45deg,
+  var(--orange),
+  var(--orange) 50px,
+  var(--pink) 50px,
+  var(--pink) 100px
+);
     box-shadow: 0px 10px 10px black;
     z-index: 99;
   }

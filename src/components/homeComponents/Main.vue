@@ -26,10 +26,15 @@
           v-else-if="!$parent.$parent.user.application.name">
         <router-link 
                     class="mainBtn" id="apply"
+                     v-if="!$parent.$parent.hasApp"
                     tag="button"
                     :to="{name: 'Apply'}">
           Fill out your application!
         </router-link>
+        <div class="mainBtn no-hover" id="apply"
+             v-else>
+          You're all set! Get pumped!!
+        </div>
       </div>
       
       <a href="https://sponsor.khe.io/" target="_blank"

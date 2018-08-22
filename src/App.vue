@@ -89,6 +89,8 @@ export default {
     return {
       showLogin: false,
       showRegister: false,
+      
+      hasApp: false,
 
       scrollToEl: "",
 
@@ -108,6 +110,16 @@ export default {
       this.user._id = user.key;
       this.user.email = user.email;
       this.user.role = user.role;
+      
+      var vm = this;
+      // Checks if the user has an application
+      this.wrapper.applicationManager.getApplication()
+      .then((app) => {
+        console.log("Hey you have an app: ", app);
+        vm.hasApp = app._onServer;
+      }).catch((err) => {
+        console.error("Problem getting your app!!");
+      })
     }
   },
 
@@ -128,6 +140,7 @@ export default {
     },
 
     userInitialState() {
+      this.hasApp = false;
       return {
         _id: "",
         email: "",
