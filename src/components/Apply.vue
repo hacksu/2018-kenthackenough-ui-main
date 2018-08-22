@@ -14,7 +14,7 @@
           <p>{{index + 1}}. 
             <span class="err"
                   v-if="question.required">*</span>
-            {{ question.label }}</p>
+            <span v-html="question.label"></span></p>
           <input type="text" v-if="question.type == 'text'"
                  class="question"
                  @keyup.enter="next()"
@@ -59,6 +59,14 @@
           
           <div class="optHolder" 
                v-if="question.type == 'bool'">
+            <span v-if="question.appField == 'conduct'"
+               class="gray-subtitle">
+              TL;DR. Be respectful. Harassment and abuse are never tolerated. 
+            </span>
+            <span v-if="question.appField == 'demographic'"
+                  class="gray-subtitle">
+              We use this to try to be more inclusive & accomadating in the future.
+            </span>
             <input class="hidden question" 
                    v-model="boolInput"
                    @keyup.enter="next()"
@@ -78,6 +86,14 @@
                                            }"
                  @click="$parent.user.application[question.appField] = false">
               2. Nope!
+            </div>
+            <div v-if="question.appField == 'travel' &&
+                       $parent.user.application[question.appField]">
+              Where are you travelling from? 
+              <input v-model="$parent.user.application.extra"
+                     class="question"
+                 @keyup.enter="next()"
+                    placeholder="USA, Ohio, Kent">
             </div>
           </div>
           
@@ -115,6 +131,7 @@
         </button>
         <button style="opacity: 0" v-else></button>
         <button @click="next()" class="spooky-button"
+                v-if="currentQuestion < appQuestions.length - 1"
                 :class="{
                         disabled: !valid(currentQuestion)
                         }">
@@ -122,7 +139,16 @@
           Next
           <p>or press Enter</p>
         </button>
+        <button @click="submit()" v-else class="spooky-button"
+                :class="{
+                       disabled: !valid(currentQuestion)
+                       }">
+          Finish!
+        </button>
         </div>
+      <div class="err">
+        {{submissionErr}}
+      </div>
     </div>
   </div>
 </template>
@@ -158,6 +184,10 @@ export default {
       
       boolInput: '',
       boolChoice: -1,
+      
+      goToNext: true, // Used to debounce next()
+      
+      submissionErr: '', // automatically displays any text here
       
       phone: {
         number: '',
@@ -263,6 +293,7 @@ export default {
             ['Junior', 'junior'],
             ['Senior', 'senior'],
             ['Grad Student', 'graduate'],
+            ['Other', 'other']
           ],
           // stringInputLabel is optional
           stringInputLabel: 'Other (describe here)',
@@ -314,6 +345,20 @@ export default {
           label: 'Upload your resume:',
           
           required: false
+        },
+        {
+          appField: 'conduct',
+          type: 'bool',
+          label: 'Do you agree to the <a href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf" target="_blank" class="orange-link">MLH code of conduct</a>?',
+          
+          required: true
+        },
+        {
+          appField: 'demographic',
+          type: 'bool',
+          label: 'Can we send your demographic info to MLH\'s administration?',
+          
+          required: true
         },
       ]
     };
@@ -385,16 +430,40 @@ export default {
           return app.major;
           break;
         case 10: // Travel
-          
+          return (app.travel == true && app.extra.length > 5)
+                  || (app.travel == false);
+          break;
+        case 11: // resume
+          return true;
+          break;
+        case 12: // MLH code of conduct
+          return app.conduct;
+          break;
+        case 13: // demographic info
+          return app.demographic
+          break;
         default:
           return true;
       }
     },
     
     next() {
-      if (this.valid(this.currentQuestion)) {
+      
+      if (this.goToNext && this.valid(this.currentQuestion)) {
+        
+        // Handling the last question
+        if (this.currentQuestion == this.appQuestions.length - 1) {
+          this.submit();
+          return;
+        }
+        
         this.currentQuestion++;
         this.focusElement();
+        this.goToNext = false;
+        var vm = this;
+        setTimeout(() => {
+          vm.goToNext = true;
+        }, 100)
       }
     },
     previous() {
@@ -427,6 +496,23 @@ export default {
     },
     uploadError(errorMessage) {
       console.error("Error uploading resume! ", errorMessage);
+    },
+    
+    submit() {
+      if (!this.valid(this.appQuestions.length - 1)) {
+        return;
+      }
+      
+      var vm = this;
+      
+      this.$parent.wrapper.applicationManager.saveApplication(this.$parent.user.application)
+      .then((data) => {
+        console.log("Submitted app!")
+      })
+      .catch((err) => {
+        console.error(err.response.data.errors[0]);
+        vm.submissionErr = err.response.data.errors[0];
+      });
     }
   },
   
@@ -448,7 +534,9 @@ export default {
     color: white;
     display: flex;
     flex-direction: column;
+    
   }
+  
   #appHeader {
     text-align: left;
     padding-left: 15%;
@@ -557,6 +645,11 @@ export default {
     opacity: .5;
   }
   
+  .gray-subtitle {
+    opacity: .5;
+    font-style: italic;
+    font-size: 12px;
+  }
 
 </style>
 
@@ -565,4 +658,7 @@ export default {
   z-index: 1001 !important;
   color: black;
 }
+  .orange-link {
+    color: orange !important;
+  }
 </style>

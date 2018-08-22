@@ -139,7 +139,7 @@ export default {
           school: "", // name of school                               !
           phone: "", // phone number                                  !
           shirt: "", // t-shirt size                                  !
-          demographic: false, // allowed to use demographic info?       ?
+          demographic: null, // allowed to use demographic info?       ?
           first: null, // is this your first hackathon?               !
           dietary: [], // food restrictions seperated by |            !
           // Vegan, vegitarian, kosher, gluten free, allergy, other
@@ -147,7 +147,7 @@ export default {
           age: '', // person's age                                    !
           gender: "", // gender                                       !
           major: "", // degree                                        !
-          conduct: false, // agree to MLH code of conduct?              ?
+          conduct: null, // agree to MLH code of conduct?              ?
           travel: null, // need travel reimbursement?                 !
           waiver: false, // agreed to waiver?                           ?
           resume: "", // the filename of their resume                   ?
@@ -325,7 +325,7 @@ p {
 
   transition: all 0.5s;
 }
-.spooky-button:hover {
+.spooky-button:not(.disabled):hover {
   cursor: pointer;
   position: relative;
   background-color: var(--orange);
