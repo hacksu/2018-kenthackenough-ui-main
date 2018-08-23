@@ -283,7 +283,7 @@ export default {
           label: 'Do you have any dietary restrictions?',
           
           options: [
-            ['Vegitarian', 'vegitarian'],
+            ['Vegetarian', 'vegetarian'],
             ['Vegan', 'vegan'],
             ['Kosher', 'kosher'],
             ['Gluten Free', 'gluten']
