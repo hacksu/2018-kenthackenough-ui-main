@@ -332,7 +332,8 @@ export default {
             ['Other', 'other']
           ],
           // stringInputLabel is optional
-          stringInputLabel: 'Other'
+          stringInputLabel: 'Other',
+          required: true
         },
         {
           appField: 'major',
@@ -435,7 +436,7 @@ export default {
           return app.age > 12;
           break;
         case 8: // gender
-          return true;
+          return app.gender;
           break;
         case 9: // Major
           return app.major;
