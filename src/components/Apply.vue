@@ -55,6 +55,7 @@
             <input class="stringOpt" 
                    v-if="question.stringInputLabel != undefined"
                    type="text" 
+                   v-model="$parent.user.application[question.appField]"
                    @keyup.enter="next()"
                    v-bind:placeholder="question.stringInputLabel">
           </div>
@@ -304,7 +305,6 @@ export default {
             ['Junior', 'junior'],
             ['Senior', 'senior'],
             ['Grad Student', 'graduate'],
-            ['Other', 'other']
           ],
           // stringInputLabel is optional
           stringInputLabel: 'Other (describe here)',
@@ -328,8 +328,7 @@ export default {
           options: [
             ['Male', 'male'],
             ['Female', 'female'],
-            ['Prefer Not to Say', 'preferNotToSay'],
-            ['Other', 'other']
+            ['Prefer Not to Say', 'Prefer not to say'],
           ],
           // stringInputLabel is optional
           stringInputLabel: 'Other',
