@@ -299,12 +299,12 @@ export default {
           label: 'Where are you in school?',
           
           options: [
-            ['In high school', 'high school'],
-            ['Freshman', 'freshman'],
-            ['Sophomore', 'sophomore'],
-            ['Junior', 'junior'],
-            ['Senior', 'senior'],
-            ['Grad Student', 'graduate'],
+            ['In high school', 'High School'],
+            ['Freshman', 'Freshman'],
+            ['Sophomore', 'Sophomore'],
+            ['Junior', 'Junior'],
+            ['Senior', 'Senior'],
+            ['Grad Student', 'Graduate'],
           ],
           // stringInputLabel is optional
           stringInputLabel: 'Other (describe here)',
@@ -326,9 +326,9 @@ export default {
           label: 'What\'s your gender?',
           
           options: [
-            ['Male', 'male'],
-            ['Female', 'female'],
-            ['Prefer Not to Say', 'Prefer not to say'],
+            ['Male', 'Male'],
+            ['Female', 'Female'],
+            ['Prefer Not to Say', 'Prefer Not to Say'],
           ],
           // stringInputLabel is optional
           stringInputLabel: 'Other',
