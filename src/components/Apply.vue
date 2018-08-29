@@ -358,6 +358,15 @@ export default {
           required: false
         },
         {
+          appField: 'link',
+          
+          type: 'text',
+          label: 'Link to your github, personal website, or anything else.',
+          placeholder: 'github.com/you',
+          
+          required: false
+        },
+        {
           appField: 'conduct',
           type: 'bool',
           label: 'Do you agree to the <a href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf" target="_blank" class="orange-link">MLH code of conduct</a>?',
@@ -444,13 +453,16 @@ export default {
           return (app.travel == true && app.extra.length > 5)
                   || (app.travel == false);
           break;
-        case 11: // resume
+        case 11:
           return true;
           break;
-        case 12: // MLH code of conduct
+        case 12: // resume
+          return true;
+          break;
+        case 13: // MLH code of conduct
           return app.conduct;
           break;
-        case 13: // demographic info
+        case 14: // demographic info
           return app.demographic
           break;
         default:
