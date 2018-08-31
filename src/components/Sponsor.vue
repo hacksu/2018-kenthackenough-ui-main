@@ -1,18 +1,20 @@
 <template>
 
 <div id="sponsors">
-  
+  <p>KHE is only possible due to the generosity of our sponsors. They're looking to work with passionate talent, just like you! Check them out!</p>
   <h1>Our sponsors:</h1>
-  <div v-for="(sponsor, index) in sponsors"
-       class="sponsorWidget"
-       :key="index">
-    <a v-bind:href="sponsor.link"
-        target="_blank">
-    <br>
-    <img v-bind:src="sponsor.imgUrl"
-         class="sponsorImage"
-        >
-      </a>
+  <div class="flex-container">
+    <div v-for="(sponsor, index) in sponsors"
+         class="sponsorWidget"
+         :key="index">
+      <a v-bind:href="sponsor.link"
+          target="_blank">
+      <br>
+      <img v-bind:src="sponsor.imgUrl"
+           class="sponsorImage"
+          >
+        </a>
+    </div>
   </div>
   
 </div>
@@ -57,5 +59,10 @@ export default {
   }
   .sponsorImage:hover {
     filter: grayscale(0%);
+  }
+  .flex-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
   }
 </style>
