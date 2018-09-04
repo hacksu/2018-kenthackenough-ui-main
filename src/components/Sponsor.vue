@@ -51,6 +51,8 @@ export default {
     color: var(--white);
     padding: 100px 5vw 200px 5vw;
 /*    padding-top: 50px;*/
+    width: 100vw;
+    margin: 0px;
   }
 
   .sponsorImage {
