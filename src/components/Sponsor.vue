@@ -49,12 +49,13 @@ export default {
   #sponsors {
   background-color: var(--dark-grey);
     color: var(--white);
-    padding: 200px;
-    padding-top: 50px;
+    padding: 100px 5vw 200px 5vw;
+/*    padding-top: 50px;*/
   }
 
   .sponsorImage {
     max-width: 300px;
+    padding: 0px 50px 0px 50px;
     filter: grayscale(100%);
   }
   .sponsorImage:hover {

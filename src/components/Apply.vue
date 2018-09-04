@@ -156,7 +156,7 @@
     <div v-else id="questionHolder">
       <h1>Thanks!</h1>
       <p>Your application was submitted! Nice!</p>
-      <p>We'll send you confirmation to your email soon. Get pumped!</p>
+      <p>We'll send confirmation to your email soon. Get pumped!</p>
       <router-link tag="button" class="spooky-button"
                    to="/">
         Back to Home!
