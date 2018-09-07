@@ -148,9 +148,7 @@ export default {
     },
     switchPasswordReset: function() {
       this.showLogin = false;
-      console.log("showPasswordReset Before click: " + this.showPasswordReset)
       this.showPasswordReset = !this.showPasswordReset;
-      console.log("showPasswordReset after click: " + this.showPasswordReset)
     },
 
     userInitialState() {
