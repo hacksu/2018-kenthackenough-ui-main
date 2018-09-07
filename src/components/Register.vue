@@ -1,9 +1,9 @@
 <template>
-  <div id="register-dialog" class="-vines">
+  <div id="dialog" class="vines">
     <span class="x-out-white" @click="$parent.dispRegister()">X</span>
     
-    <h4 id="register-title">Register</h4>
-    <h6 id="register-subtitle">We've been waiting for you!</h6>
+    <h4 id="dialog-title">Register</h4>
+    <h6 id="dialog-subtitle">We've been waiting for you!</h6>
     
     <input id="login-username" 
            class="text-input"
@@ -30,7 +30,7 @@
     <br>
     <br>
       
-    <button id="register-button" @click="register()">
+    <button id="dialog-button" @click="register()">
       Register!
     </button>
     <br>
@@ -82,28 +82,7 @@ export default {
 };
 </script>
 
-<style scoped>
-  #register-dialog {
-    position: fixed;
-    background-color: var(--bg-black);
-    border: var(--dark-orange) 5px solid;
-    color: white;
-    text-align: center;
-    
-    border-radius: 10px;
-    left: 50%;
-    top: 100px;
-    transform: translateX(-50%);
-    right: auto 0;
-    min-width: 300px;
-    width: 40%;
-    min-height: 200px;
-    z-index: 1000;
-    
-    padding: 30px;
-    padding-bottom: 40px;
-  }
-  
+<style scoped>  
   .vines {
     box-sizing: border-box;
     border: 30px solid rgba(0,0,0,0.5);
@@ -113,24 +92,6 @@ export default {
     border-image-width: 1;
     border-image-outset: .4;
   }
-  
-  #register-title {
-    font-size: 60px;
-    color: white;
-    padding: 0px;
-    margin-top: 0px;
-    margin-bottom: 10px;
-  }
-  #register-subtitle {
-    font-size: 20px;
-    color: var(--orange);
-    margin-top: 0px;
-    margin-bottom: 30px;
-    font-style: italic;
-    opacity: .7;
-  }
-  
-  
   
   ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     opacity: .8; 
@@ -150,13 +111,9 @@ export default {
     border: none;
     cursor: pointer;
   }
-  #register-button {
-    width: 50%;
-    padding: 10px 0px 10px 0px;
-    min-width: 120px;
-    background: var(--dark-orange);
-    border: 1px solid var(--dark-orange);
-    color: black;
+
+  #dialog {
+    padding-bottom: 25px;
   }
 </style>
 

@@ -14,8 +14,6 @@
         </div>
       </div>
       
-      
-      
       <div id="bannerR" class="bannerContainer"
            :class="{'hidden': expandMenu}">
         
@@ -63,6 +61,9 @@
     <div class="darken" v-if="showRegister"
          @click="showRegister = !showRegister;"></div>
     <register v-if="showRegister"></register> 
+    <div class="darken" v-if="showPasswordReset"
+         @click="showPasswordReset = !showPasswordReset;"></div>
+    <password-reset v-if="showPasswordReset"></password-reset>
     
     
     <router-view/>
@@ -77,18 +78,21 @@ import apiConfig from "./config/config";
 
 import login from "./components/Login";
 import register from "./components/Register";
+import passwordReset from "./components/PasswordReset";
 
 export default {
   name: "app",
 
   components: {
     login,
-    register
+    register,
+    passwordReset
   },
   data() {
     return {
       showLogin: false,
       showRegister: false,
+      showPasswordReset: false,
       
       hasApp: false,
 
@@ -134,9 +138,19 @@ export default {
       this.expandMenu = false;
       this.showRegister = !this.showRegister;
     },
+    dispPasswordReset: function() {
+      this.expandMenu = false;
+      this.showPasswordReset = false
+    },
     switchLoginRegister: function() {
       this.showRegister = !this.showRegister;
       this.showLogin = !this.showLogin;
+    },
+    switchPasswordReset: function() {
+      this.showLogin = false;
+      console.log("showPasswordReset Before click: " + this.showPasswordReset)
+      this.showPasswordReset = !this.showPasswordReset;
+      console.log("showPasswordReset after click: " + this.showPasswordReset)
     },
 
     userInitialState() {
@@ -206,6 +220,58 @@ export default {
 /* Reset */
 * {
   box-sizing: border-box;
+}
+
+#dialog {
+  position: fixed;
+  background-color: var(--bg-black);
+  border: var(--dark-orange) 5px solid;
+  color: white;
+  text-align: center;
+  
+  border-radius: 10px;
+  left: 50%;
+  top: 100px;
+  transform: translateX(-50%);
+  right: auto 0;
+  min-width: 300px;
+  width: 40%;
+  min-height: 200px;
+  z-index: 1000;
+  
+  padding: 30px;
+  padding-bottom: 50px;
+}
+
+#dialog-title {
+  font-size: 60px;
+  color: white;
+  padding: 0px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+#dialog-subtitle {
+  font-size: 20px;
+  color: var(--orange);
+  margin-top: 0px;
+  margin-bottom: 30px;
+  font-style: italic;
+  opacity: .7;
+}
+
+#dialog-button {
+  width: 50%;
+  padding: 10px 0px 10px 0px;
+  min-width: 120px;
+  background: var(--dark-orange);
+  border: 1px solid var(--dark-orange);
+  color: black;
+}
+
+#dialog-message {
+  font-size: 15px;
+  color: white;
 }
 
 .darken {
