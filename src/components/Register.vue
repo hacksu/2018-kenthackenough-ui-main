@@ -59,8 +59,6 @@ export default {
     register() {
       // Verify that both passwords match
       if (this.password === this.passwordConfirm) {
-        console.log(this.email)
-        console.log(this.password)
         this.$parent.wrapper.userManager.createUser(this.email, this.password)
           .then((data) => {
 //            console.log(data);

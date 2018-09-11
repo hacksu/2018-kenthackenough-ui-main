@@ -76,8 +76,6 @@ export default {
   methods: {
     login() {
     // Verify that both 
-      console.log(this.email)
-      console.log(this.password)
       this.$parent.wrapper.userManager.login(this.email, this.password)
       .then((data) => {
         
