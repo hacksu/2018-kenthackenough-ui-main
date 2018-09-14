@@ -50,8 +50,7 @@ export default {
   background-color: var(--dark-grey);
     color: var(--white);
     padding: 100px 5vw 200px 5vw;
-/*    padding-top: 50px;*/
-    width: 100vw;
+   padding-top: 50px;
     margin: 0px;
   }
 
