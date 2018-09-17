@@ -109,7 +109,7 @@
                      $parent.user.application[question.appField] > 12 &&
                      $parent.user.application[question.appField] < 18"
                style="font-size: 14px;">
-              As a minor, make sure you bring a <a href="https://khe.io/static/Minor_Waiver.pdf" target="_blank" class="orange-link">waiver</a>, signed by a parent or gaurdian.
+              As a minor, make sure you bring a <router-link :to="{name: 'MinorWaiver'}" target="_blank" class="orange-link">waiver</router-link>, signed by a parent or gaurdian.
             </p>
           </div>
           
