@@ -1,5 +1,5 @@
 <template>
-  <pdf src="../static/Minor_Waiver.pdf"></pdf>
+  <pdf src="./static/Minor_Waiver.pdf"></pdf>
 </template>
 
 <script>
