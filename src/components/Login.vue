@@ -4,7 +4,7 @@
     
     <h4 id="dialog-title">Log in</h4>
     <h6 id="dialog-subtitle">...if you dare!!!</h6>
-    
+    <div id="error-message"> {{ error }}</div>
     <input id="login-username" 
            class="text-input"
            type="text" 
@@ -27,7 +27,7 @@
       Log in!
     </button>
     <br>
-    {{err}}
+    {{error}}
     <br>
 
     <span id="login-create-account"
@@ -73,7 +73,7 @@ export default {
     return {
       email: '',
       password: '',
-      err: ''
+      error:''
     };
   },
   methods: {
@@ -90,9 +90,7 @@ export default {
         this.$parent.showLogin = false;
       })
       .catch((err) => {
-        // TODO: Sign up Failed.
-        this.err = "Log in failed! :("
-        throw err;
+          this.error='Your email or password is incorrect';
       });
     }
   }

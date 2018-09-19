@@ -273,7 +273,10 @@ export default {
   font-size: 15px;
   color: white;
 }
-
+#error-message{
+    font-size:15px;
+    color:red;
+    }
 .darken {
   position: fixed;
   top: 0px;
