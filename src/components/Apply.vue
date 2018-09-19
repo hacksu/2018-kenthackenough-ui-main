@@ -8,7 +8,7 @@
           v-on:submit.prevent
          v-if="currentQuestion != appQuestions.length">
       <div class="question" v-for="(question, index) in appQuestions"
-            >
+      :key="index">
         
         <div id="displayedQuestion" v-if="currentQuestion == index">
         
@@ -45,6 +45,7 @@
                    >
             <div class="opt" 
                  v-for="(option, optIndex) in question.options"
+                 :key="optIndex"
                  v-bind:class="{
                                     selected: $parent.user.application[question.appField] == option[1],
                                     selectable: $parent.user.application[question.appField] != option[1]

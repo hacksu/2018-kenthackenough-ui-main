@@ -26,15 +26,16 @@
           v-else-if="!$parent.$parent.user.application.name">
         <router-link 
                     class="mainBtn" id="apply"
-                     v-if="!$parent.$parent.hasApp"
+                    v-if="!$parent.$parent.hasApp"
                     tag="button"
                     :to="{name: 'Apply'}">
           Fill out your application!
         </router-link>
-        <div class="mainBtn no-hover" id="apply"
-             v-else>
+        <a href="https://www.facebook.com/kenthackenough/"
+            class="mainBtn no-hover" id="apply"
+            v-else>
           You're all set! Get pumped!!
-        </div>
+        </a>
       </div>
       
       <a href="https://sponsor.khe.io/" target="_blank"
@@ -166,9 +167,6 @@ a {
   color: var(--yellow);
 }
 
-.mainBtn {
-}
-
 #mlh-trust-badge {
   display: block; 
   max-width: 100px; 
@@ -187,9 +185,6 @@ a {
 /*  BREAKPOINT:*/
 
 @media screen and (min-width: 768px) {
-  #main-container {
-  }
-
   #logo {
     width: 100%;
   }
@@ -281,19 +276,79 @@ a {
 }
 </style>
 
+<!-- (unconventional & messy) style for toast notifications -->
+<style>
+.toasted {
+  display: none !important;
+}
+
+@media screen and (min-width: 768px) {
+  .toasted {
+    display: flex !important;
+  }
+}
+</style>
+
 
 
 <script>
 // import {TweenMax, Power0, Power1, Back, TimelineLite} from "gsap";
 // import { TweenMax, TimelineLite } from 'gsap';
+import Vue from "vue"
+import Toasted from "vue-toasted";
+import Icons from "material-icons";
+
+Vue.use(Toasted, {
+    iconPack: 'material',
+    singleton: true,
+});
 
 import Hill from "./Hill";
 
 export default {
   name: "Main",
   components: { Hill },
+  computed: {
+    showToast() {
+      return (this.$parent.$parent.hasCheckedForApp && this.$parent.$parent.user._id != "" && !this.$parent.$parent.hasApp);
+    }
+  },
+  watch: {
+    showToast() {
+      let toastConfig = {
+        className: "toast",
+        theme: "primary", 
+        icon: "error_outline",
+        action: [
+          {
+            text: "Make one!",
+            onClick: (e, toastObject) => {
+              toastObject.goAway(0);
+              this.$router.push({ path: "/apply" });
+            }
+          },
+          {
+            text: "Dismiss",
+            onClick: (e, toastObject) => {
+              toastObject.goAway(0);
+            }
+          },
+        ],
+      }
+
+      if (this.showToast) {
+        this.toast = this.$toasted.show("You have not submitted an application yet.", toastConfig);
+      } else {
+        if (this.toast != null) {
+          this.toast.goAway(0);
+        }
+      }
+    }
+  },
   data() {
-    return {};
+    return {
+      toast: null,
+    };
   },
   mounted() {
     //    const houseEl = document.querySelector('#House');

@@ -95,6 +95,7 @@ export default {
       showPasswordReset: false,
       
       hasApp: false,
+      hasCheckedForApp: false,
 
       scrollToEl: "",
 
@@ -115,14 +116,15 @@ export default {
       this.user.email = user.email;
       this.user.role = user.role;
       
-      var vm = this;
       // Checks if the user has an application
       this.wrapper.applicationManager.getApplication()
       .then((app) => {
         console.log("Hey you have an app: ", app);
-        vm.hasApp = app._onServer;
+        this.hasApp = app._onServer;
+        this.hasCheckedForApp = true;
       }).catch((err) => {
         console.error("Problem getting your app!!");
+        this.hasCheckedForApp = true;
       })
     }
   },
