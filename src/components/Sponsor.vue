@@ -44,13 +44,11 @@ export default {
 </script>
 
 <style scoped>
-  
-  
   #sponsors {
   background-color: var(--dark-grey);
     color: var(--white);
-    padding: 100px 5vw 200px 5vw;
-   padding-top: 50px;
+    padding: 100px 5vw 80px 5vw;
+    padding-top: 50px;
     margin: 0px;
   }
 
@@ -59,9 +57,11 @@ export default {
     padding: 0px 50px 0px 50px;
     filter: brightness(0) invert(1);
   }
+
   .sponsorImage:hover {
     filter: grayscale(0%);
   }
+
   .flex-container {
     display: flex;
     flex-flow: row wrap;
