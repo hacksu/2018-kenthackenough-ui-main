@@ -4,6 +4,8 @@ import Home from '@/components/Home';
 import Contact from '@/components/Contact';
 import Sponsor from '@/components/Sponsor';
 import Apply from '@/components/Apply';
+import MinorWaiver from '@/components/MinorWaiver';
+import NotFound from '@/components/NotFound';
 
 Vue.use(Router);
 
@@ -32,6 +34,16 @@ export default new Router({
       path: '/apply',
       name: 'Apply',
       component: Apply
+    },
+    {
+      path: '/minor-waiver',
+      name: 'MinorWaiver',
+      component: MinorWaiver
+    },
+    {
+      path: '/*',
+      name: 'NotFound',
+      component: NotFound
     }
   ],
 });

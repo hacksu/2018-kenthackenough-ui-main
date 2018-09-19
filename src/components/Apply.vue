@@ -109,7 +109,7 @@
                      $parent.user.application[question.appField] > 12 &&
                      $parent.user.application[question.appField] < 18"
                style="font-size: 14px;">
-              As a minor, make sure you bring a <a href="https://khe.io/static/Minor_Waiver.pdf" target="_blank" class="orange-link">waiver</a>, signed by a parent or gaurdian.
+              As a minor, make sure you bring a <a href="https://www.kent.edu/sites/default/files/file/Hold%20Harmless%20Agreement%20%26%20Release_1.pdf" target="_blank" class="orange-link">waiver</a>, signed by a parent or gaurdian.
             </p>
           </div>
           
