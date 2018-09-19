@@ -27,6 +27,7 @@
       Log in!
     </button>
     <br>
+    {{err}}
     <br>
 
     <span id="login-create-account"
@@ -37,6 +38,7 @@
     <br>
 
     <div id="forgot-password-button"
+         v-if="0"
             @click="$parent.switchPasswordReset()">
       Forgot your password?
     </div>
@@ -70,12 +72,14 @@ export default {
   data() {
     return {
       email: '',
-      password: ''
+      password: '',
+      err: ''
     };
   },
   methods: {
     login() {
     // Verify that both 
+      this.err = '';
       this.$parent.wrapper.userManager.login(this.email, this.password)
       .then((data) => {
         
@@ -87,6 +91,7 @@ export default {
       })
       .catch((err) => {
         // TODO: Sign up Failed.
+        this.err = "Log in failed! :("
         throw err;
       });
     }
