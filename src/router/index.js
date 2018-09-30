@@ -6,6 +6,7 @@ import Sponsor from '@/components/Sponsor';
 import Apply from '@/components/Apply';
 import MinorWaiver from '@/components/MinorWaiver';
 import NotFound from '@/components/NotFound';
+import Live from '@/components/Live'
 
 Vue.use(Router);
 
@@ -39,6 +40,11 @@ export default new Router({
       path: '/minor-waiver',
       name: 'MinorWaiver',
       component: MinorWaiver
+    },
+    {
+      path: '/live',
+      name: 'Live',
+      component: Live
     },
     {
       path: '/*',
