@@ -72,6 +72,7 @@
 </template>
 
 <script>
+import Router from 'vue-router';
 import scrollto from "vue-scrollto";
 import { ApiWrapper } from "khe-frontend-lib";
 import apiConfig from "./config/config";
@@ -192,6 +193,7 @@ export default {
       //        console.error("Error logging out: ", err);
       //      })
       this.user = this.userInitialState();
+      this.$router.push({ path: "/" });
     },
 
     togMenu: function() {
