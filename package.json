@@ -24,7 +24,7 @@
     "vue-router": "^3.0.1",
     "vue-scrollto": "^2.13.0",
     "vue-tel-input": "^2.0.2",
-    "vue-toasted": "^1.1.24",
+    "vue-toasted": "^1.1.25",
     "vue2-dropzone": "^3.2.2"
   },
   "devDependencies": {
@@ -37,7 +37,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-stage-2": "^6.22.0",
     "babel-register": "^6.22.0",
-    "chai": "^4.1.2",
+    "chai": "^4.2.0",
     "chalk": "^2.4.1",
     "chromedriver": "^2.42.0",
     "connect-history-api-fallback": "^1.5.0",
