@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="status-text bg-message" v-if="message != ''">{{ message }}</h1>
+    <h1 class="message-text bg-message" v-if="message != ''">{{ message }}</h1>
     <div v-if="!$parent.wrapper.userManager.getLocalUser()">
       <div id="contact" class="widget">
           <h2 id="rsvpTitle">Please login to RSVP</h2>
@@ -166,7 +166,23 @@
 
   .status-text {
     color: var(--orange);
-    font-size: 24px;
+	  font-size: 2rem;
     text-align: center;
+  }
+
+  .message-text {
+    color: black;
+	  font-size: 2rem;
+    text-align: center;
+  }
+
+  .bg-message {
+    padding: 4rem 20px;
+    background-color: var(--orange);
+    background-image: radial-gradient(var(--dark-orange) 15%, transparent 16%),
+    radial-gradient(var(--dark-orange) 15%, transparent 16%);
+    background-size: 60px 60px;
+    background-position: 0 0, 30px 30px;
+    margin-bottom: 25px;
   }
 </style>
