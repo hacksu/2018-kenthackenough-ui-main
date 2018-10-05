@@ -80,6 +80,7 @@ import apiConfig from "./config/config";
 import login from "./components/Login";
 import register from "./components/Register";
 import passwordReset from "./components/PasswordReset";
+import rsvp from "./components/RSVP";
 
 export default {
   name: "app",
@@ -87,7 +88,8 @@ export default {
   components: {
     login,
     register,
-    passwordReset
+    passwordReset,
+    rsvp
   },
   data() {
     return {
