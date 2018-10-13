@@ -38,7 +38,6 @@
     <br>
 
     <div id="forgot-password-button"
-         v-if="0"
             @click="$parent.switchPasswordReset()">
       Forgot your password?
     </div>
