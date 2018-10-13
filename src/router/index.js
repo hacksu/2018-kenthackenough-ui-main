@@ -7,7 +7,8 @@ import Apply from '@/components/Apply';
 import MinorWaiver from '@/components/MinorWaiver';
 import NotFound from '@/components/NotFound';
 import RSVP from '@/components/RSVP';
-import Live from '@/components/Live'
+import Live from '@/components/Live';
+import Schedule from '@/components/Schedule';
 
 Vue.use(Router);
 
@@ -52,6 +53,11 @@ export default new Router({
       path: '/live',
       name: 'Live',
       component: Live
+    },
+    {
+      path: '/schedule',
+      name: 'Schedule',
+      component: Schedule
     },
     {
       path: '/*',
