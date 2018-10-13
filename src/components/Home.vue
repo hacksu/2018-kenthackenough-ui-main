@@ -3,6 +3,7 @@
     <main-landing></main-landing>
      <info></info> 
      <faq></faq> 
+     <schedule :events="$parent.events"></schedule>
      <kentmap></kentmap> 
   </div>
 </template>
@@ -14,6 +15,7 @@ import mainLanding from './homeComponents/Main';
 import info from './homeComponents/Info';
 import faq from './homeComponents/FAQ';
 import kentmap from './homeComponents/Map';
+import schedule from './homeComponents/Schedule';
 
 export default {
   name: 'Home',
@@ -21,6 +23,7 @@ export default {
     mainLanding,
     info,
     faq,
+    schedule,
     kentmap
   },
   data() {
