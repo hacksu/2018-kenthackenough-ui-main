@@ -100,6 +100,7 @@ export default {
   padding-top: 10px;
   margin: 0 auto;
 }
+
 #schedule {
   background: #E0F2D3;
   margin-top: 50px;
@@ -212,6 +213,47 @@ export default {
     padding: 1rem 0 2rem;
     /*background-color: blue;*/
   }
+  @media screen and (max-width: 768px) {
+    #schedule-container {
+        width: 90%;
+        min-width: 90%;
+    }
+    .franken-eye {
+      width: 25%;
+      height: 25px;
+      position: absolute;
+      top: 20px;
+    }
+    .franken-eye:after {
+      content: '';
+      height: 25px;
+      width: 25px;
+      background: var(--green);
+      position: absolute;
+      border-radius: 50%;
+      top: 12px;
+      left: calc(50% - 12px);
+    }
+    #franken-nose {
+      margin: 0 auto;
+      display: block;
+      margin-top: 40px;
+      width: 45px;
+      left: calc(50% - 90px);
+    }
+    .franken-tooth {
+        background: #181818;
+        height: 15px;
+        width: 35px;
+        position: sticky;
+    }
+    #schedule {
+      background: #E0F2D3;
+      margin-top: 50px;
+      overflow-y: scroll;
+      max-height: 70%;
+    }
+}
 
 
 h3 {
