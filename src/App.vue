@@ -106,7 +106,10 @@ export default {
 
       user: this.userInitialState(),
 
-      wrapper: new ApiWrapper(apiConfig)
+      wrapper: new ApiWrapper(apiConfig),
+
+      liveUpdates: {},
+      events: [],
     };
   },
 
@@ -130,6 +133,32 @@ export default {
         this.hasCheckedForApp = true;
       })
     }
+
+    // LOADING IN SCHEDULE
+    let vm = this;
+        this.liveUpdates = this.wrapper.liveManager;
+        this.liveUpdates.exisitingEvents().then((msgs) => {
+            for (let i = 0; i < msgs.length; i++)
+                vm.events.push(msgs[i])
+        });
+        this.liveUpdates.SubscribeToEvents({
+            onCreate(event) {
+                vm.events.unshift(event);
+            },
+            onUpdate: function(event) {
+                var index = vm.events.findIndex(function(o){
+                    return o._id === event._id;
+                });
+                vm.events.splice(index, 1);
+                vm.events.push(event);
+            },
+            onDelete: function(event) {
+                var index = vm.events.findIndex(function(o){
+                    return o._id === event._id;
+                });
+                if (index !== -1) vm.events.splice(index, 1);
+            }
+        });
   },
 
   methods: {
@@ -346,7 +375,7 @@ export default {
   --orange: #ff936b;
   --dark-orange: #ee835a;
   --pink: #ff74b9;
-  --green: #82fa6b;
+  --green: #88BD56;
   --dark-green: #004529;
   --darker-green: #003229;
   --blue: #64cdf6;
