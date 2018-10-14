@@ -8,7 +8,7 @@ import MinorWaiver from '@/components/MinorWaiver';
 import NotFound from '@/components/NotFound';
 import RSVP from '@/components/RSVP';
 import Live from '@/components/Live';
-import Schedule from '@/components/Schedule';
+import Schedule from '@/components/homeComponents/Schedule';
 
 Vue.use(Router);
 

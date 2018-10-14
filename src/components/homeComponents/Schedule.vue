@@ -64,7 +64,10 @@
 export default {
     props: {
         events: {
-            type: Array
+            type: Array,
+            default: function() {
+                return this.$parent.events
+            }
         }
     }
 }
@@ -251,7 +254,7 @@ export default {
       background: #E0F2D3;
       margin-top: 50px;
       overflow-y: scroll;
-      max-height: 70%;
+      max-height: 60%;
     }
 }
 
