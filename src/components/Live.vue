@@ -69,9 +69,19 @@
       <div class="franken-tooth" id="franken-tooth-lower"></div>
 
     </div>
+    <h3 style="color: var(--green);">SCHEDULE</h3>
   </div>
   <div id="leaderboard-container">
-    <div id="leaderboard" class="inside-container"></div>
+    <svg id="pumpkin-stem"
+    width="100%" height="100%" viewBox="0 0 33 29" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;"><path d="M32.459,4.705l-16.358,-4.705l-16.101,12.282l0,16.002l18.118,0l0,-15.743l14.341,-7.836Z" style="fill:#1a1716;"/>
+    </svg>
+    <div class="pumpkin-eye" id="pumpkin-eye-left"></div>
+    <div class="pumpkin-eye" id="pumpkin-eye-right"></div>
+    <div id="leaderboard" class="inside-container">
+      <img src="@/assets/pumpkin-teeth.png" id="pumpkin-teeth-top">
+      <img src="@/assets/pumpkin-teeth.png" id="pumpkin-teeth-bottom">
+    </div>
+    <h3 style="color: var(--orange);font-size: 20px;letter-spacing: 5px;">TOP SCORES</h3>
   </div>
   <div id="redeem-container">
     <div id="redeem" class="inside-container"></div>
@@ -102,7 +112,7 @@
 
 .inside-container {
   width: 90%;
-  min-height: 200px;
+  min-height: 100px;
   margin-right: 5%;
   margin-left: 5%;
   border-radius: 15px;
@@ -122,6 +132,12 @@
   background: #D6BDD6;
   margin-top: 10px;
   height: 70%;
+}
+
+#pumpkin-stem {
+  position: absolute;
+  top: -48px;
+  height: 50px;
 }
 
 #ear {
@@ -203,7 +219,7 @@
   background: #E0F2D3;
   margin-top: 50px;
   overflow-y: scroll;
-  max-height: 70%;
+  max-height: 60%;
 }
 
 .franken-eye {
@@ -312,13 +328,52 @@
   }
 
 #leaderboard-container {
+  margin-top: 40px;
   background: #181818;
   grid-column: 3 / 3;
   grid-row: 1 / 1;
+  position: relative;
+  border-radius: 15px;
 }
 #leaderboard {
   background: #FEE0CC;
-  margin-top: 60px;
+  margin-top: 75px;
+  position: relative;
+  min-height: 170px;
+}
+
+.pumpkin-eye {
+  width: 0;
+  height: 0;
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+  border-bottom: 40px solid var(--orange);
+  position: absolute;
+  bottom: 0px;
+}
+
+#pumpkin-eye-left {
+  position: absolute;
+  top: 15px;
+  left: 14%;
+}
+#pumpkin-eye-right {
+  position: absolute;
+  top: 15px;
+  right: 14%;
+}
+
+#pumpkin-teeth-top {
+  width: 100%;
+  height: 30px;
+  position: absolute;
+}
+#pumpkin-teeth-bottom {
+  width: 100%;
+  height: 30px;
+  position: absolute;
+  bottom: 0px;
+  transform: scale(1, -1);
 }
 
 #redeem-container {

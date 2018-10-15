@@ -35,6 +35,9 @@
         
         <p class="banner-link yellow"
            @click="navTo('/contact')">Contact</p>
+
+        <p class="banner-link green"
+           @click="navTo('/schedule')">Schedule</p>
         
         <p class="banner-link blue"
            @click="scrollTo('/', '#map')">Map</p>
@@ -110,6 +113,8 @@ export default {
 
       liveUpdates: {},
       events: [],
+
+      messages: []
     };
   },
 
@@ -157,6 +162,29 @@ export default {
                     return o._id === event._id;
                 });
                 if (index !== -1) vm.events.splice(index, 1);
+            }
+        });
+
+    // LOADING IN UPDATES
+    this.liveUpdates.exisitingMessages().then((msgs) => {
+      for (let i = 0; i < msgs.length; i++)
+        vm.messages.push(msgs[i])
+      });
+      this.liveUpdates.SubscribeToMessages({
+            onCreate(msg) {
+                vm.messages.unshift(msg);
+            },
+            onUpdate: function(event) {
+                var index = vm.messages.findIndex(function(o){
+                    return o._id === event._id;
+                });
+                vm.messages[index].text = event.text;
+            },
+            onDelete: function(event) {
+                var index = vm.messages.findIndex(function(o){
+                    return o._id === event._id;
+                });
+                if (index !== -1) vm.messages.splice(index, 1);
             }
         });
   },
