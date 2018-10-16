@@ -84,6 +84,10 @@
     <h3 style="color: var(--orange);font-size: 20px;letter-spacing: 5px;">TOP SCORES</h3>
   </div>
   <div id="redeem-container">
+    <img id="goat-horn-left" class="goat-horn" src="@/assets/goathorn.png">
+    <img id="goat-horn-right" class="goat-horn" src="@/assets/goathorn.png">
+    <img id="goat-face" src="@/assets/goatface.png">
+
     <div id="redeem" class="inside-container"></div>
   </div>
 </div>
@@ -380,6 +384,27 @@
   background: #181818;
   grid-column: 3 / 3;
   grid-row: 2 / 2;
+  border-radius: 15px;
+  margin-top: 45px;
+  position: relative;
+}
+.goat-horn {
+  position: absolute;
+  top: -40px;
+  height: 50px;
+}
+#goat-horn-left {
+  left: 15%;
+}
+#goat-horn-right {
+  right: 15%;
+  transform: scale(-1, 1);
+}
+#goat-face {
+  width: 50%;
+  margin: 0 auto;
+  display: block;
+  margin-top: 20px;
 }
 
 h3 {
