@@ -9,6 +9,7 @@ import NotFound from '@/components/NotFound';
 import RSVP from '@/components/RSVP';
 import Live from '@/components/Live';
 import Schedule from '@/components/homeComponents/Schedule';
+import Redeem from '@/components/Redeem'
 
 Vue.use(Router);
 
@@ -58,6 +59,11 @@ export default new Router({
       path: '/schedule',
       name: 'Schedule',
       component: Schedule
+    },
+    {
+      path: '/redeem',
+      name: 'Redeem',
+      component: Redeem
     },
     {
       path: '/*',
