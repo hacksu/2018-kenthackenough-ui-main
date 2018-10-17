@@ -102,6 +102,66 @@
 
     <div id="redeem" class="inside-container"></div>
   </div>
+  <div id="mobile-schedule-container" class="mobile">
+    <h3>Schedule</h3>
+    <div class="day" id="friday">
+            <h2 class="date-title">Friday, October 19th</h2>
+            <div v-for="event in $parent.events" v-bind:key="event._id" class="event-holder">
+                <li v-if="(event.start.startsWith('2018-10-19') && Number(event.start.split('T')[1].substring(0, 2)) >= 4) || (Number(event.start.split('T')[1].substring(0, 2)) < 4 && event.start.startsWith('2018-10-20'))">
+                    <span class="time" v-if="event.end != null">{{ event.start | moment("h:mm a") }}</span>
+                    <span class="time" v-else>{{ event.start | moment("h:mm a") }}</span>
+
+                    <span class="name">{{ event.title }}</span>
+
+                    <span class="location">{{ event.location }}</span>
+
+                    <span class="description">{{ event.description }}</span>
+                </li>
+            </div>
+        </div>
+        <div class="day" id="saturday">
+            <h2 class="date-title">Saturday, October 20th</h2>
+            <div v-for="event in $parent.events" v-bind:key="event._id" class="event-holder">
+                <li v-if="(event.start.startsWith('2018-10-20') && Number(event.start.split('T')[1].substring(0, 2)) >= 4) || (Number(event.start.split('T')[1].substring(0, 2)) < 4 && event.start.startsWith('2018-10-21'))">
+                  <span class="time" v-if="event.end != null">{{ event.start | moment("h:mm a") }}</span>
+                  <span class="time" v-else>{{ event.start | moment("h:mm a") }}</span>
+
+                  <span class="name">{{ event.title }}</span>
+
+                  <span class="location">{{ event.location }}</span>
+
+                  <span class="description">{{ event.description }}</span>
+                </li>
+            </div>
+        </div>
+        <div class="day" id="sunday">
+            <h2 class="date-title">Sunday, October 21st</h2>
+            <div v-for="event in $parent.events" v-bind:key="event._id" class="event-holder">
+                <li v-if="(event.start.startsWith('2018-10-21') && Number(event.start.split('T')[1].substring(0, 2)) >= 4) || (Number(event.start.split('T')[1].substring(0, 2)) < 4 && event.start.startsWith('2018-10-22'))">
+                    <span class="time" v-if="event.end != null">{{ event.start | moment("h:mm a") }}</span>
+                    <span class="time" v-else>{{ event.start | moment("h:mm a") }}</span>
+
+                    <span class="name">{{ event.title }}</span>
+
+                    <span class="location">{{ event.location }}</span>
+
+                    <span class="description">{{ event.description }}</span>
+                </li>
+            </div>
+        </div>
+  </div>
+  <div id="mobile-updates-container" class="mobile">
+    <h3>Updates</h3>
+    <div id="message-node-padding" style="height: 50px"></div>
+      <div v-for="message in $parent.messages" class="message-node">
+        <p class="message-text">{{ message.text }}</p>
+        <p class="message-time">{{ formatTime(message.created) }}</p>
+        <hr>
+      </div>
+  </div>
+  <div id="mobile-points-container" class="mobile">
+
+  </div>
 </div>
 </template>
 
@@ -474,5 +534,43 @@ h3 {
   text-align: center;
   margin: 0px;
   margin-top: 15px;
+}
+
+.mobile {
+  display:none;
+}
+
+@media screen and (max-width: 1000px) {
+  #updates-container {
+    display: none;
+  }
+  #schedule-container {
+    display:none;
+  }
+  #redeem-container {
+    display: none;
+  }
+  #leaderboard-container {
+    display:none;
+  }
+  .mobile {
+    display: block;
+    overflow-y: scroll;
+  }
+  #mobile-schedule-container {
+    background: #E0F2D3;
+    grid-column: 1/4;
+    grid-row: 1/2;
+  }
+  #mobile-updates-container {
+    background: #D6BDD6;
+    grid-column: 1/4;
+    grid-row: 2/3;
+  }
+  #mobile-points-container {
+    background: #FEE0CC;
+    grid-column: 1/4;
+    grid-row: 3/4;
+  }
 }
 </style>

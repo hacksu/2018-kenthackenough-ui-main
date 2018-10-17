@@ -114,7 +114,9 @@ export default {
       liveUpdates: {},
       events: [],
 
-      messages: []
+      messages: [],
+
+      scores: []
     };
   },
 
@@ -186,6 +188,16 @@ export default {
                 });
                 if (index !== -1) vm.messages.splice(index, 1);
             }
+        });
+
+    // LOADING LEADERBOARD:
+        console.log(this.wrapper)
+        this.wrapper.gamifyV1.scoreboard()
+        .then((scores) => {
+            vm.scores = scores;
+        })
+        .catch((err) => {
+            throw err;
         });
   },
 
