@@ -36,18 +36,18 @@
         <p class="banner-link yellow"
            @click="navTo('/contact')">Contact</p>
 
-        <p class="banner-link green"
+        <p class="banner-link pink"
            @click="navTo('/schedule')">Schedule</p>
         
-        <p class="banner-link blue"
+        <p class="banner-link green"
            @click="scrollTo('/', '#map')">Map</p>
         
-        <p class="banner-link pink" @click="dispRegister()"
+        <p class="banner-link blue" @click="dispRegister()"
            v-if="user._id == ''">
           Register/Login
         </p>
         
-        <p class="banner-link pink" @click='logout()'
+        <p class="banner-link blue" @click='logout()'
            v-if="user._id != ''">
           Log out
         </p>
