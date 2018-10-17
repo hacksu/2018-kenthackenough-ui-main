@@ -7,10 +7,22 @@
     <div id="eye-right" class="eye"></div>
     <img src="@/assets/bat_nose.png" id="bat-nose">
     <div id="updates" class="inside-container">
-      <div class="tooth-down" id="update-tooth-top-left"></div>
-      <div class="tooth-down" id="update-tooth-top-right"></div>
-      <div class="tooth-up" id="update-tooth-bottom-left"></div>
-      <div class="tooth-up" id="update-tooth-bottom-right"></div>
+      <div id="tooth-up-container">
+        <div class="tooth-down" id="update-tooth-top-right"></div>
+        <div class="tooth-down" id="update-tooth-top-left"></div>
+      </div>
+
+      <div id="message-node-padding" style="height: 50px"></div>
+      <div v-for="message in $parent.messages" class="message-node">
+        <p class="message-text">{{ message.text }}</p>
+        <p class="message-time">{{ formatTime(message.created) }}</p>
+        <hr>
+      </div>
+
+      <div id="tooth-down-container">
+        <div class="tooth-up" id="update-tooth-bottom-left"></div>
+        <div class="tooth-up" id="update-tooth-bottom-right"></div>
+      </div>
     </div>
     <h3 style="color: var(--pink);">UPDATES</h3>
   </div>
@@ -94,7 +106,27 @@
 </template>
 
 <script>
+export default {
+  methods: {
+    formatTime(time) {
+      var datetime = new Date(time);
+      var minutes = datetime.getMinutes();
+      var hours = datetime.getHours();
+      var ampm = "am";
+      
+      if (hours > 12) {
+        hours -= 12;
+        ampm = "pm";
+      }
 
+      if (minutes < 10) {
+        minutes = "0" + minutes;
+      }
+
+      return hours + ":" + minutes + ampm;
+    }
+  }
+}
 </script>
 
 <style scoped>
@@ -136,6 +168,7 @@
   background: #D6BDD6;
   margin-top: 10px;
   height: 70%;
+  overflow-y: scroll;
 }
 
 #pumpkin-stem {
@@ -182,6 +215,19 @@
   margin-top: 30px;
 }
 
+#tooth-up-container {
+  position: sticky;
+  width: 100%;
+  top: 0px;
+}
+
+#tooth-down-container {
+  position: sticky;
+  width: 100%;
+  bottom: 0px;
+}
+
+
 .tooth-up {
   width: 0;
   height: 0;
@@ -189,7 +235,6 @@
   border-right: 25px solid transparent;
   border-bottom: 70px solid #181818;
   position: absolute;
-  bottom: 0px;
 }
 .tooth-down {
   width: 0;
@@ -405,6 +450,23 @@
   margin: 0 auto;
   display: block;
   margin-top: 20px;
+}
+
+.message-node {
+  margin: 5px 5% 5px 5%;
+}
+
+.message-text {
+  margin-bottom: 0px;
+}
+
+.message-time {
+  font-size: 12px;
+  margin-top: 0px;
+  opacity: .5;
+}
+hr {
+  border-color: black;
 }
 
 h3 {
