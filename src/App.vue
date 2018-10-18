@@ -222,6 +222,7 @@ export default {
 
     getScores() {
       // LOADING LEADERBOARD:
+      var vm = this;
         console.log(this.wrapper)
         this.wrapper.gamifyV1.scoreboard()
         .then((scores) => {

@@ -1,5 +1,6 @@
 <template>
 <div id="live">
+
   <div id="updates-container">
     <div id="ear"></div>
     <div id="ear2"></div>
@@ -14,7 +15,7 @@
 
       <div id="message-node-padding" style="height: 50px"></div>
       <div v-for="message in $parent.messages" class="message-node">
-        <p class="message-text">{{ message.text }}</p>
+        <p class="message-text" v-html="compileMarkdown(message.text)"> </p>
         <p class="message-time">{{ formatTime(message.created) }}</p>
         <hr>
       </div>
@@ -203,12 +204,17 @@
 </template>
 
 <script>
+var VueMarkdown = require('vue-markdown');
+
 export default {
   data() {
     return {
       pointCode: '',
       pointMsg: '',
     }
+  },
+  components: {
+    'vue-markdown': VueMarkdown
   },
   computed: {
     scores() {
@@ -260,6 +266,9 @@ export default {
         this.pointCode = ""
           console.error("Error redeeming points!");
       });
+    },
+    compileMarkdown(text) {
+      return marked(text, { sanitize: true })
     }
   },
   mounted() {
