@@ -183,7 +183,7 @@
   </div>
   <div id="mobile-updates-container" class="mobile">
     <h3>Updates</h3>
-    <div id="message-node-padding" style="height: 50px"></div>
+    <div id="message-node-padding" style="height: 25px"></div>
       <div v-for="message in $parent.messages" class="message-node">
         <p class="message-text">{{ message.text }}</p>
         <p class="message-time">{{ formatTime(message.created) }}</p>

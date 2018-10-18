@@ -52,6 +52,9 @@
           Log out
         </p>
         
+        <p class="banner-link yellow"
+           @click="navTo('/live')">Live!</p>
+        
         <div class="padding" style="width: 50px"></div>
       </div>
       
