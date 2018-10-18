@@ -252,6 +252,7 @@ export default {
       .then((data) => {
         this.pointMsg = "You got +50 points!";
         this.pointCode = "";
+        this.$parent.getScores();
           console.log('Submitted code successfully!', data);
       })
       .catch((err) => {

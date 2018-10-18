@@ -193,15 +193,7 @@ export default {
             }
         });
 
-    // LOADING LEADERBOARD:
-        console.log(this.wrapper)
-        this.wrapper.gamifyV1.scoreboard()
-        .then((scores) => {
-            vm.scores = scores;
-        })
-        .catch((err) => {
-            throw err;
-        });
+    this.getScores();
   },
 
   methods: {
@@ -226,6 +218,18 @@ export default {
     switchPasswordReset: function() {
       this.showLogin = false;
       this.showPasswordReset = !this.showPasswordReset;
+    },
+
+    getScores() {
+      // LOADING LEADERBOARD:
+        console.log(this.wrapper)
+        this.wrapper.gamifyV1.scoreboard()
+        .then((scores) => {
+            vm.scores = scores;
+        })
+        .catch((err) => {
+            throw err;
+        });
     },
 
     userInitialState() {
