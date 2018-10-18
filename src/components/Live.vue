@@ -91,14 +91,19 @@
     <div class="pumpkin-eye" id="pumpkin-eye-right"></div>
     <div id="leaderboard" class="inside-container">
       <img src="@/assets/pumpkin-teeth.png" id="pumpkin-teeth-top">
-      <img src="@/assets/pumpkin-teeth.png" id="pumpkin-teeth-bottom">
       <div style="height: 25px;"></div>
+      <div class="top-score" v-if="yourScore">
+        <p>Your current score: </p>
+        <p>{{ yourScore.points }}</p>
+      </div>
+      <p style="margin: 0;font-weight: bolder;text-align: center;">Top scores:</p>
       <div v-for="(score, index) in scores" class="top-score">
         <span>{{index + 1 }}. {{score.email}} - </span>
         <span>{{score.points}}</span>
       </div>
 
     </div>
+    <img src="@/assets/pumpkin-teeth.png" id="pumpkin-teeth-bottom">
     <h3 style="color: var(--orange);font-size: 20px;letter-spacing: 5px;">SCORES</h3>
   </div>
   <div id="redeem-container">
@@ -208,6 +213,14 @@ export default {
   computed: {
     scores() {
       return this.$parent.scores
+    },
+    yourScore() {
+      for (var scoreID in this.$parent.scores) {
+        if (this.$parent.scores[scoreID]._id == this.$parent.user._id) {
+          return this.$parent.scores[scoreID];
+        }
+      }
+      return false;
     }
   },
   methods: {
@@ -543,13 +556,14 @@ export default {
 #pumpkin-teeth-top {
   width: 100%;
   height: 30px;
-  position: absolute;
+  top: 0px;
+  position: sticky;
 }
 #pumpkin-teeth-bottom {
   width: 100%;
   height: 30px;
-  position: absolute;
-  bottom: 0px;
+  position: relative;
+  top: -20px;
   transform: scale(1, -1);
 }
 

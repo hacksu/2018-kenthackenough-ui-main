@@ -31,10 +31,10 @@
                     :to="{name: 'Apply'}">
           Fill out your application!
         </router-link>
-        <a href="https://www.facebook.com/kenthackenough/"
+        <a href="/live"
             class="mainBtn no-hover" id="apply"
             v-else>
-          You're all set! Get pumped!!
+          Live Updates!
         </a>
       </div>
       
