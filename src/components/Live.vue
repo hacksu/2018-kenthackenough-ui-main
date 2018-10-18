@@ -92,16 +92,42 @@
     <div id="leaderboard" class="inside-container">
       <img src="@/assets/pumpkin-teeth.png" id="pumpkin-teeth-top">
       <img src="@/assets/pumpkin-teeth.png" id="pumpkin-teeth-bottom">
+      <div style="height: 25px;"></div>
+      <div v-for="(score, index) in scores" class="top-score">
+        <span>{{index + 1 }}. {{score.email}} - </span>
+        <span>{{score.points}}</span>
+      </div>
+
     </div>
-    <h3 style="color: var(--orange);font-size: 20px;letter-spacing: 5px;">TOP SCORES</h3>
+    <h3 style="color: var(--orange);font-size: 20px;letter-spacing: 5px;">SCORES</h3>
   </div>
   <div id="redeem-container">
     <img id="goat-horn-left" class="goat-horn" src="@/assets/goathorn.png">
     <img id="goat-horn-right" class="goat-horn" src="@/assets/goathorn.png">
     <img id="goat-face" src="@/assets/goatface.png">
 
-    <div id="redeem" class="inside-container"></div>
+    <input class="redeem-input" placeholder="[CODE]" v-model="pointCode"
+            @keyup.enter="redeemPoints()">
+    <h3 style="color: var(--blue);font-size: 20px;letter-spacing: 5px;cursor:pointer;"
+        @click="redeemPoints()">GET POINTS</h3>
+    <p style="color: var(--blue);text-align: center;">{{ pointMsg }}</p>
   </div>
+  
+  <div id="socials">
+    <a href="https://bit.ly/kheslack" target="_blank" class="social-link">
+      <img src="@/assets/slack.png" class="social-icon">
+    </a>
+    <a href="https://www.instagram.com/kenthackenough/?hl=en" target="_blank" class="social-link">
+      <img src="@/assets/insta.png" class="social-icon">
+    </a>
+    <a href="https://twitter.com/kenthackenough?lang=en" target="_blank" class="social-link">
+      <img src="@/assets/twitter.png" class="social-icon">
+    </a>
+    <a href="https://www.facebook.com/kenthackenough/" target="_blank" class="social-link" >
+      <img src="@/assets/fb.png" class="social-icon">
+    </a>
+  </div>
+
   <div id="mobile-schedule-container" class="mobile">
     <h3>Schedule</h3>
     <div class="day" id="friday">
@@ -160,13 +186,30 @@
       </div>
   </div>
   <div id="mobile-points-container" class="mobile">
-
+    <div style="display: flex;justify-content: space-between;margin: 0px;">
+      <p><b>Your Points: </b> 0</p>
+      <p>{{pointMsg}}</p>
+    </div>
+    <p>Enter Code: <input class="mobile-input" placeholder="[CODE]" v-model="pointCode">
+      <button v-if="pointCode.length > 2" @click="redeemPoints()">Enter!</button>
+    </p>
   </div>
 </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      pointCode: '',
+      pointMsg: '',
+    }
+  },
+  computed: {
+    scores() {
+      return this.$parent.scores
+    }
+  },
   methods: {
     formatTime(time) {
       var datetime = new Date(time);
@@ -184,7 +227,29 @@ export default {
       }
 
       return hours + ":" + minutes + ampm;
+    },
+    redeemPoints() {
+      this.$parent.wrapper.gamifyV1.redeem(
+          this.$parent.wrapper.userManager.getLocalUser(),
+          this.pointCode,
+          50, // Constant point code.
+          'const',
+          'const'
+      )
+      .then((data) => {
+        this.pointMsg = "You got +50 points!";
+        this.pointCode = "";
+          console.log('Submitted code successfully!', data);
+      })
+      .catch((err) => {
+        this.pointMsg = "Incorrect code!"
+        this.pointCode = ""
+          console.error("Error redeeming points!");
+      });
     }
+  },
+  mounted() {
+    
   }
 }
 </script>
@@ -284,7 +349,8 @@ export default {
 #tooth-down-container {
   position: sticky;
   width: 100%;
-  bottom: 0px;
+  top: 0px;
+  display: none;
 }
 
 
@@ -448,7 +514,9 @@ export default {
   background: #FEE0CC;
   margin-top: 75px;
   position: relative;
-  min-height: 170px;
+  height: 170px;
+  overflow-y: scroll;
+  padding-bottom: 20px;
 }
 
 .pumpkin-eye {
@@ -485,6 +553,12 @@ export default {
   transform: scale(1, -1);
 }
 
+.top-score {
+  display: flex;
+  margin: 5px 5%;
+  justify-content: space-between;
+}
+
 #redeem-container {
   background: #181818;
   grid-column: 3 / 3;
@@ -510,6 +584,41 @@ export default {
   margin: 0 auto;
   display: block;
   margin-top: 20px;
+}
+
+#socials {
+  grid-column: 3/3;
+  grid-row: 3/3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.social-icon {
+  width: 100%;
+  display: block;
+}
+.social-link {
+  width: 20%;
+  display: block;
+}
+
+
+.redeem-input {
+  background: none;
+  border: none;
+  border-bottom: solid 3px #50B4E6;
+  outline: none;
+  margin: 0 auto;
+  color: white;
+  margin-top: 10px;
+  display: block;
+  font-size: 18px;
+  text-align: center;
+  padding: 5px;
+  letter-spacing: 5px;
+}
+.redeem-input::placeholder {
+  letter-spacing: 0px;
 }
 
 .message-node {
@@ -553,6 +662,9 @@ h3 {
   #leaderboard-container {
     display:none;
   }
+  #socials {
+    display: none;
+  }
   .mobile {
     display: block;
     overflow-y: scroll;
@@ -571,6 +683,19 @@ h3 {
     background: #FEE0CC;
     grid-column: 1/4;
     grid-row: 3/4;
+    padding: 5px 5%;
+  }
+  .mobile-input {
+    background: none;
+    border: none;
+    border-bottom: solid 2px black;
+    outline:none;
+    width: 30%;
+  }
+  p {
+    margin-top: 5px;
   }
 }
+  
+  
 </style>
